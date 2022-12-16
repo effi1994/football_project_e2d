@@ -10,10 +10,10 @@ import {
 
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {useState} from "react";
+import {login,getUser} from'../services/userAtuhService';
 
 
-
-const LoginForm = () => {
+const LoginForm = (props) => {
 
     const globalStyle = {
         "input::-ms-reveal, input::-ms-clear": {
@@ -44,6 +44,10 @@ const LoginForm = () => {
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     };
+
+    const onLogin =()=>{
+        login(username,password,props.onToken);
+    }
 
     return (
         <div>
@@ -116,6 +120,7 @@ const LoginForm = () => {
                                 }
                             }}
                                     disabled={disabledButton()}
+                                    onClick={onLogin}
                                     variant={"contained"}
                                     color={"warning"}>
                                     Login

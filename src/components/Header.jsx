@@ -6,7 +6,7 @@ const links = [
     {titlePage: "Live results", path: "/"},
     {titlePage: "League table", path: "/league-table"},
     {titlePage: "League table live", path: "/league-table-live"},
-    {titlePage: "Login", path: "/login"}
+    {titlePage:  "Login", path: "/login"}
 ]
 
 const buttonSX = {
@@ -18,6 +18,8 @@ const buttonSX = {
 }
 
 const Header = (props) => {
+
+    links[3].titlePage = props.token ? "Add game" : "Login"
     return (
         <>
             <Box sx={{flexGrow: 1}}>

@@ -1,10 +1,13 @@
 import React from 'react';
 import LoginForm from "../components/LoginForm";
-
-const Login = () => {
+import AddGameForm from "../components/AddGameForm";
+const Login = (props) => {
     return (
         <div>
-            <LoginForm/>
+            {
+                props.token ? <AddGameForm/>: <LoginForm onToken={props.onToken}/>
+            }
+
         </div>
     );
 };
