@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppBar, Box, Button, List, ListItem, Toolbar} from "@mui/material";
 import {NavLink} from "react-router-dom";
+import {getToken} from "../services/userAtuhService";
 
 const links = [
     {titlePage: "Live results", path: "/"},
@@ -19,7 +20,7 @@ const buttonSX = {
 
 const Header = (props) => {
 
-    links[3].titlePage = props.token ? "Add game" : "Login"
+    links[3].titlePage = props.token || getToken() ? "Add game" : "Login"
     return (
         <>
             <Box sx={{flexGrow: 1}}>

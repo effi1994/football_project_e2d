@@ -22,7 +22,7 @@ function App() {
     //effi OVEDDD!!!!!!!!3342
 
     let location = useLocation()
-    const [token, setToken] = useState(null);
+ const [token, setToken] = useState(null);
     useEffect( () => {
        if (getToken()){
            setToken(getToken());
@@ -31,7 +31,6 @@ function App() {
        }
     })
 
-console.log(new Date(Date.now() + 1000*60))
     const handleToken = (token) => {
         setToken(token);
     }
