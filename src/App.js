@@ -10,6 +10,11 @@ import {useEffect, useState} from "react";
 import {getUser,getToken} from "./services/userAtuhService";
 
 function App() {
+    //To Do: Implement a login page,
+    //To Do: Implement a logout button,
+    //To Do: Implement a user profile page,
+    //To Do: Implement a user profile page,
+    //To Do: Implement a user profile page,
 
     let location = useLocation()
     const [token, setToken] = useState(null);
