@@ -2,25 +2,30 @@ import {sendApiGetRequest, sendApiPostRequest} from "./ApiRequests";
 import config from "../config.json";
 
 let urlApi= config.apiUrl;
-let teamsName=null;
-let teams=[];
+let teamsName=[];
+ export let teams=[];
 
-export const getTeams= (callback) => {
+
+export const getTeams= () => {
+    debugger
     sendApiGetRequest(urlApi + "/get-all-teams", (response) => {
         if (response.data.success) {
-            teams = response.data.allTeams;
+            debugger;
+            teams = response.data.teamsObjectList;
             teamsName=teams.map(team=>{
                 return {
                     nameTeams:team.nameTeams,
                     id:team.id
                 }
             });
-            callback(teams);
+            console.log(teamsName);
+            return teams;
         }else {
             teamsName = null;
         }
     })
 }
+
 
 export const getTeamsName = () => {
     return teamsName;
