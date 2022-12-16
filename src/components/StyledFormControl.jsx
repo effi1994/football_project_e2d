@@ -32,7 +32,7 @@ const StyledFormControl = (props) => {
             <TextField
                 sx={{maxWidth: props.maxWidth}}
                 name={props.name}
-                label="props.label"
+                label={props.label}
                 type="number"
                 value={game.session}
                 InputProps={{ inputProps: { min: props.minVal } }}
