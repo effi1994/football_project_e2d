@@ -8,8 +8,14 @@ let teams=[];
 export const getTeams= (callback) => {
     sendApiGetRequest(urlApi + "/get-all-teams", (response) => {
         if (response.data.success) {
-            teamsName = response.data.teams;
-            callback(teamsName);
+            teams = response.data.allTeams;
+            teamsName=teams.map(team=>{
+                return {
+                    nameTeams:team.nameTeams,
+                    id:team.id
+                }
+            });
+            callback(teams);
         }else {
             teamsName = null;
         }
