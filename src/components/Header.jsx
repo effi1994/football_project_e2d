@@ -50,7 +50,7 @@ const Header = (props) => {
                             </Tooltip>
 
                             <Tooltip title={"Go forward"}>
-                                <IconButton onclick={() => navigate(1)}>
+                                <IconButton onClick={() => navigate(1)}>
                                     <ArrowForwardOutlinedIcon/>
                                 </IconButton>
                             </Tooltip>
