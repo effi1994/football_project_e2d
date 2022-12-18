@@ -1,17 +1,15 @@
 import React from 'react';
 import LoginForm from "../components/LoginForm";
-import AddGameForm from "../components/AddGameForm";
+import AddEditGamesForm from "../components/AddEditGamesForm";
+import AddEditGamesPage from "./AddEditGamesPage";
 
-import {getToken} from "../services/userAtuhService";
 
-const Login = (props) => {
-
+const Login = () => {
 
     return (
         <div>
-            {
-                props.token || getToken() ? <AddGameForm/>: <LoginForm onToken={props.onToken}/>
-            }
+            {/*<LoginForm/>*/}
+            <AddEditGamesPage/>
 
         </div>
     );
