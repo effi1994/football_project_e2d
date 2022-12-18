@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Box, FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
+import {Box, Checkbox, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip} from "@mui/material";
 import StyledButton from "./StyledButton";
+import VideogameAssetRoundedIcon from '@mui/icons-material/VideogameAssetRounded';
+import VideogameAssetOffRoundedIcon from '@mui/icons-material/VideogameAssetOffRounded';
 
 //
 
@@ -56,6 +58,13 @@ const StyledBox = (props) => {
 
 
     const [game, setGame] = useState(initialGame)
+
+    const handleCheckBoxChange = (e) => {
+        setGame((prevState => ({
+            ...prevState,
+            isLive: !game.isLive
+        })))
+    }
 
 
     useEffect(() => {
@@ -203,6 +212,21 @@ const StyledBox = (props) => {
             </FormControl>
 
             {
+                props.mode != 1&&
+                <Tooltip title={game.isLive ? "Mark the game as completed": "Marl the game as in live"}>
+                    <Checkbox icon={<VideogameAssetRoundedIcon/>}
+                              checkedIcon={<VideogameAssetOffRoundedIcon/>}
+                              size={"large"}
+                              sx={{marginLeft:"auto"}}
+                              value={game.isLive}
+                              onChange={handleCheckBoxChange}
+                              disabled={Object.keys(props.editGame).length === 0}
+                              checked={!game.isLive}
+                    />
+                </Tooltip>
+            }
+
+            {
                 Object.keys(props.editGame).length === 0 && props.mode==1 ?
                     <StyledButton disabled={(game.homeTeam == "" || game.foreignTeam == "") }
                                   text={"Add Game"}
@@ -213,7 +237,7 @@ const StyledBox = (props) => {
                     />
                     :
                     <StyledButton disabled={Object.keys(props.editGame).length === 0}
-                                  text={"Edit Game"}
+                                  text={"Edit"}
                                   sx={styledBoxButtonSx}
                                   onClick={updateGame}
                                   icon={"/"}
