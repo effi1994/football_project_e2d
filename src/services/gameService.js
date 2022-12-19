@@ -2,25 +2,24 @@ import {sendApiGetRequest, sendApiPostRequest} from "./ApiRequests";
 
 import config from "../config.json";
 let urlApi= config.apiUrl;
-let liveGames=[];
-let endGames=[];
+export let liveGames=[];
+export let endGames=[];
 
 export const getLiveGames= (callback) => {
     sendApiGetRequest(urlApi + "/get-live-games", (response) => {
         if (response.data.success) {
             liveGames = response.data.liveGames;
-            callback(liveGames);
         }else {
             liveGames = null;
         }
     })
 }
 
-export const getEndGames= (callback) => {
+export const getEndGames= () => {
     sendApiGetRequest(urlApi + "/get-end-games", (response) => {
         if (response.data.success) {
-            endGames = response.data.endGames;
-            callback(endGames);
+            endGames = response.data.gamesObjectList;
+
         }else {
             endGames = null;
         }

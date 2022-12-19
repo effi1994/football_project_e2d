@@ -8,14 +8,12 @@ import Login from "../pages/Login";
 import {Container} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getToken} from "../services/userAtuhService";
-import {getTeams } from "../services/teamService";
 
 const AppContainer = () => {
 
     let location = useLocation();
     const [token, setToken] = useState(null);
     useEffect( () => {
-        getTeams();
         if (getToken()){
             setToken(getToken());
 
