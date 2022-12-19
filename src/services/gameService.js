@@ -38,3 +38,27 @@ export const addGame= (arrayGamesLive) => {
         }
     })
 }
+
+export const updateGame= (gameLive) => {
+    sendApiPostRequest(urlApi + "/update-game", gameLive, (response) => {
+        if (response.data.success) {
+
+        }else {
+            if (response.data.error) {
+                alert(response.data.error);
+            }
+        }
+    })
+}
+
+export const  updateEndGames =(arrayGamesLive)=>{
+    sendApiPostRequest(urlApi + "/end-games", arrayGamesLive, (response) => {
+        if (response.data.success) {
+
+        }else {
+            if (response.data.error) {
+                alert(response.data.error);
+            }
+        }
+    })
+}
