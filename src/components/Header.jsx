@@ -3,6 +3,7 @@ import {AppBar, Box, Button, IconButton, List, Toolbar, Tooltip} from "@mui/mate
 import {NavLink, useNavigate} from "react-router-dom";
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
+import {getToken} from "../services/userAtuhService";
 
 const links = [
     {titlePage: "Live results", path: "/"},
@@ -20,6 +21,7 @@ const buttonSX = {
 }
 
 const Header = (props) => {
+    links[3].titlePage= props.token  || getToken() ? "Logout" : "Login";
 
     const navigate = useNavigate();
 
@@ -42,14 +44,14 @@ const Header = (props) => {
                             ))}
 
                             {/* to do: onclick*/}
-                           <span style={{alignItems:"center", marginLeft:100}}>
+                            <span style={{alignItems:"center", marginLeft:100}}>
                                 <Tooltip title={"Go back"}>
                                 <IconButton onClick={() => navigate(-1)}>
                                     <ArrowBackOutlinedIcon/>
                                 </IconButton>
                             </Tooltip>
-                               {/*hello world*/}
-                            <Tooltip title={"Go forward"}>
+                                {/*hello world*/}
+                                <Tooltip title={"Go forward"}>
                                 <IconButton onClick={() => navigate(1)}>
                                     <ArrowForwardOutlinedIcon/>
                                 </IconButton>

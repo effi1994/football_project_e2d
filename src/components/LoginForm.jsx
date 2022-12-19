@@ -10,10 +10,11 @@ import {
 
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {useState} from "react";
+import {login} from '../services/userAtuhService';
 
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 
     const globalStyle = {
         "input::-ms-reveal, input::-ms-clear": {
@@ -38,12 +39,16 @@ const LoginForm = () => {
     };
 
     const handlePasswordChange = (e) => {
-         setPassword(e.target.value);
+        setPassword(e.target.value);
     };
-        
+
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     };
+
+    const onLogin = () => {
+        login(username,password,props.onToken);
+    }
 
     return (
         <div>
@@ -80,7 +85,7 @@ const LoginForm = () => {
 
                     {/* bug in MS Edge browser: duplicates show password button*/}
                     <GlobalStyles styles={globalStyle} />
-                    
+
                     <TextField
                         label='Password'
                         variant="outlined"
@@ -117,7 +122,9 @@ const LoginForm = () => {
                             }}
                                     disabled={disabledButton()}
                                     variant={"contained"}
-                                    color={"warning"}>
+                                    color={"warning"}
+                                    onClick={onLogin}
+                            >
                                     Login
                             </Button>
                         </span>
