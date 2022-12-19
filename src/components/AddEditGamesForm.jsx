@@ -3,6 +3,7 @@ import StyledBox from "./Styled/StyledBox";
 import {Typography} from "@mui/material";
 import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
+import {objectIsEmpty} from "../utilities/utilities"
 
 
 
@@ -25,7 +26,7 @@ const AddEditGamesForm = (props) => {
             homeTeam: "team3",
             foreignTeam: "team4",
             goalsForeign: 0,
-            goalsHome: 0,
+            goalsHome: 1,
             isLive: true
 
 
@@ -121,7 +122,7 @@ const AddEditGamesForm = (props) => {
    return(
        <>
 
-           <Typography variant={"h4"} padding={2} textAlign={"center"}>{props.mode==1?"Add Games":"Edit existing games"}</Typography>
+           <Typography variant={"h4"} padding={2} textAlign={"center"}>{props.mode==1 ? objectIsEmpty(editGame)? "Add games" : "Edit game" :"Edit existing games"}</Typography>
            <StyledBox create={createGame}
                       update={update}
                       editGame={editGame}

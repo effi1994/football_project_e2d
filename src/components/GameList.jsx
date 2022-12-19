@@ -14,12 +14,11 @@ import {
     Typography
 } from "@mui/material";
 
+import {key} from "../utilities/utilities"
+
 
 const GameList = (props) => {
     let width = window.innerWidth;
-    let randomKey = () => {
-        return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
-    }
 
     const [editIndex, setEditIndex] = useState(-1)
 
@@ -47,12 +46,12 @@ const GameList = (props) => {
                <Table  sx={{ minWidth: 650}} aria-label="simple table">
                    <TableHead>
                        <TableRow>
-                           <TableCell align="right">Session</TableCell>
-                           <TableCell align="right">Home team</TableCell>
-                           <TableCell align="right">Foreign team</TableCell>
-                           <TableCell align="right">Goals to foreign</TableCell>
-                           <TableCell align="right">Goals to Home</TableCell>
-                           <TableCell align="right">Ended</TableCell>
+                           <TableCell align="center">Session</TableCell>
+                           <TableCell align="center">Home team</TableCell>
+                           <TableCell align="center">Foreign team</TableCell>
+                           <TableCell align="center">Goals to foreign</TableCell>
+                           <TableCell align="center">Goals to Home</TableCell>
+                           <TableCell align="center">Ended</TableCell>
                            <TableCell align="right"></TableCell>
                            {
                                props.mode==1&&
@@ -65,14 +64,13 @@ const GameList = (props) => {
                            <TableRow sx={{
                                backgroundColor: editIndex==index ? "rgba(132, 159, 219, 0.44)": "",
                                transition:  "0.1s linear",
-                               borderRadius: 5,
                                opacity: 0.85,
                                ":hover": {
                                    backgroundColor: editIndex!=index ? "rgba(168, 173, 170, 0.05)" : "",
                                    opacity: 1
                                },
                            }}
-                               key={randomKey()}
+                               key={key()}
                            >
 
                                <TableCell align="center">{game.session}</TableCell>

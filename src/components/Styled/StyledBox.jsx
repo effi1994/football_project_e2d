@@ -3,16 +3,14 @@ import {Box, Checkbox, FormControl, InputLabel, MenuItem, Select, TextField, Too
 import StyledButton from "./StyledButton";
 import VideogameAssetRoundedIcon from '@mui/icons-material/VideogameAssetRounded';
 import VideogameAssetOffRoundedIcon from '@mui/icons-material/VideogameAssetOffRounded';
+import {objectIsEmpty} from "../../utilities/utilities";
+
 
 //
 
 const StyledBox = (props) => {
     let width = window.innerWidth;
-    let randomKey = () => {
-        return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
-    }
-//eeeee
-    ///yuyuy
+
     const handleNumFieldChange = (e) => {
         let isNum = /^\d+$/.test(e.target.value);
         if (isNum) {
@@ -22,7 +20,6 @@ const StyledBox = (props) => {
             })))
         }
     }
-    ///aa
 
 
     const handleTextFieldChange = (e) => {
@@ -34,6 +31,7 @@ const StyledBox = (props) => {
     const styledBoxButtonSx={
         marginLeft: 3,
         borderRadius: 3,
+        minWidth: 100
     }
     const formControlSx = {
         marginLeft: 3
@@ -68,7 +66,7 @@ const StyledBox = (props) => {
 
 
     useEffect(() => {
-        if (!(Object.keys(props.editGame).length === 0)) {
+        if (!objectIsEmpty(props.editGame)) {
             setGame(props.editGame)
         }
         else {
@@ -105,8 +103,8 @@ const StyledBox = (props) => {
              justifyContent={"center"}
              marginTop={0}
              padding={3}
-             borderRadius={3}
              boxShadow={'5px 5px 10px #ccc'}
+             disabled={true}
              sx={{
                  transition: "0.2s ease-in",
                  ":hover": {
@@ -118,6 +116,7 @@ const StyledBox = (props) => {
             <FormControl>
                 <InputLabel></InputLabel>
                 <TextField
+                    disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                     sx={{maxWidth:100}}
                     name={"session"}
                     label="Session"
@@ -129,7 +128,8 @@ const StyledBox = (props) => {
                 />
             </FormControl>
 
-            <FormControl sx={formControlSx}>
+            <FormControl disabled={objectIsEmpty(props.editGame) && props.mode!=1}
+                         sx={formControlSx}>
                 <InputLabel>Home team</InputLabel>
                 <Select sx={{ minWidth: 130}}
                         name={"homeTeam"}
@@ -155,7 +155,9 @@ const StyledBox = (props) => {
             </FormControl>
 
 
-            <FormControl sx={formControlSx}>
+            <FormControl
+                disabled={objectIsEmpty(props.editGame) && props.mode!=1}
+                sx={formControlSx}>
                 <InputLabel>Foreign team</InputLabel>
                 <Select sx={{ minWidth: 140}}
                         label="Foreign team"
@@ -181,9 +183,11 @@ const StyledBox = (props) => {
                 </Select>
             </FormControl>
 
-            <FormControl sx={formControlSx}>
+            <FormControl
+                sx={formControlSx}>
                 <InputLabel></InputLabel>
                 <TextField
+                    disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                     sx={{maxWidth:150}}
                     id="outlined-number"
                     label="Goals to foreign"
@@ -195,9 +199,11 @@ const StyledBox = (props) => {
                 />
             </FormControl>
 
-            <FormControl sx={formControlSx}>
+            <FormControl
+                sx={formControlSx}>
                 <InputLabel></InputLabel>
                 <TextField
+                    disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                     sx={{maxWidth:150}}
                     id="outlined-number"
                     label="Goals to home"
@@ -213,30 +219,31 @@ const StyledBox = (props) => {
 
             {
                 props.mode != 1&&
-                <Tooltip title={game.isLive ? "Mark the game as completed": "Marl the game as in live"}>
+                <Tooltip title={game.isLive ? "Mark the game as completed": "Mark the game as in live"}>
                     <Checkbox icon={<VideogameAssetRoundedIcon/>}
                               checkedIcon={<VideogameAssetOffRoundedIcon/>}
                               size={"large"}
                               sx={{marginLeft:"auto"}}
                               value={game.isLive}
                               onChange={handleCheckBoxChange}
-                              disabled={Object.keys(props.editGame).length === 0}
+                              disabled={objectIsEmpty(props.editGame)}
                               checked={!game.isLive}
                     />
                 </Tooltip>
             }
 
             {
-                Object.keys(props.editGame).length === 0 && props.mode==1 ?
+                objectIsEmpty(props.editGame) && props.mode==1 ?
                     <StyledButton disabled={(game.homeTeam == "" || game.foreignTeam == "") }
-                                  text={"Add Game"}
+                                  text={"Add"}
                                   sx={styledBoxButtonSx}
                                   onClick={addNewGame}
                                   icon={"+"}
                                   color={"secondary"}
+
                     />
                     :
-                    <StyledButton disabled={Object.keys(props.editGame).length === 0}
+                    <StyledButton disabled={objectIsEmpty(props.editGame)}
                                   text={"Edit"}
                                   sx={styledBoxButtonSx}
                                   onClick={updateGame}
