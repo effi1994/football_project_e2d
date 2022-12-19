@@ -5,10 +5,10 @@ let urlApi= config.apiUrl;
 export let liveGames=[];
 export let endGames=[];
 
-export const getLiveGames= (callback) => {
+export const getLiveGames= () => {
     sendApiGetRequest(urlApi + "/get-live-games", (response) => {
         if (response.data.success) {
-            liveGames = response.data.liveGames;
+            liveGames = response.data.gamesObjectList;
         }else {
             liveGames = null;
         }

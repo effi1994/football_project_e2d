@@ -73,6 +73,7 @@ export const calculateTableLeagueLive=  ()=>{
             points:0
         })
     });
+    console.log(liveGames)
     let games=liveGames;
     games.forEach(game=>{
         let indexTeam1=tableLeague.findIndex(team=>team.nameTeams===game.homeTeam);
