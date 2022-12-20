@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import StyledButton from "../components/Styled/StyledButton";
 import AddEditGamesForm from "../components/AddEditGamesForm";
+import {getTeams} from "../services/teamService";
 
 const AddEditGamesPage = () => {
     const[mode, setMode] = useState(0)
+
+    useEffect(() => {
+        getTeams()
+    },[])
 
     const onClick = (e) => {
 

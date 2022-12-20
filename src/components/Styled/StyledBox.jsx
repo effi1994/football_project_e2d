@@ -4,12 +4,22 @@ import StyledButton from "./StyledButton";
 import VideogameAssetRoundedIcon from '@mui/icons-material/VideogameAssetRounded';
 import VideogameAssetOffRoundedIcon from '@mui/icons-material/VideogameAssetOffRounded';
 import {objectIsEmpty} from "../../utilities/utilities";
+import {getTeams, getTeamsName} from "../../services/teamService";
+import {randomUniqKey} from "../../utilities/utilities"
 
 
 //
 
 const StyledBox = (props) => {
     let width = window.innerWidth;
+
+    const [teams, setTeams] = useState([])
+
+    useEffect(() => {
+            setTeams(getTeamsName())
+
+    })
+
 
     const handleNumFieldChange = (e) => {
         let isNum = /^\d+$/.test(e.target.value);
@@ -131,21 +141,23 @@ const StyledBox = (props) => {
             <FormControl disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                          sx={formControlSx}>
                 <InputLabel>Home team</InputLabel>
-                <Select sx={{ minWidth: 130}}
+                <Select sx={{ minWidth: 130, maxWidth: 140}}
                         name={"homeTeam"}
                         label="Home team"
                         value={game.homeTeam}
                         onChange={handleTextFieldChange}
                 >
                     {
-                        props.teams.map((team) => {
+
+                        teams.map((team) => {
                             return(
+
                                 <MenuItem
-                                    key={team.id}
-                                    value={team.name}
-                                    disabled={game.foreignTeam==team.name}
+                                    key={randomUniqKey()}
+                                    value={team.nameTeams}
+                                    disabled={game.foreignTeam==team.nameTeams}
                                 >
-                                    {team.name}
+                                    {team.nameTeams}
                                 </MenuItem>
                             )
                         })
@@ -159,7 +171,7 @@ const StyledBox = (props) => {
                 disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                 sx={formControlSx}>
                 <InputLabel>Foreign team</InputLabel>
-                <Select sx={{ minWidth: 140}}
+                <Select sx={{ minWidth: 140, maxWidth: 140}}
                         label="Foreign team"
                         name={"foreignTeam"}
                         value={game.foreignTeam}
@@ -167,14 +179,14 @@ const StyledBox = (props) => {
                 >
 
                     {
-                        props.teams.map((team) => {
+                        teams.map((team) => {
                             return(
                                 <MenuItem
-                                    key={team.id}
-                                    value={team.name}
-                                    disabled={game.homeTeam==team.name}
+                                    key={randomUniqKey()}
+                                    value={team.nameTeams}
+                                    disabled={game.homeTeam==team.nameTeams}
                                 >
-                                    {team.name}
+                                    {team.nameTeams}
                                 </MenuItem>
                             )
                         })

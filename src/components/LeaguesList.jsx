@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IconButton,
     Paper,
@@ -11,7 +11,7 @@ import {
     Tooltip
 } from "@mui/material";
 
-import {key} from "../utilities/utilities"
+import {randomUniqKey} from "../utilities/utilities"
 
 
 const LeaguesList = (props) => {
@@ -23,6 +23,16 @@ const LeaguesList = (props) => {
         {name: "Foreign team"},
         {name: "Goals to foreign"},
         {name: "Goals to home"},
+    ]
+
+    const leagueTableCell = [
+        {name: "Place"},
+        {name: "Team name"},
+        {name: "Total points"},
+        {name: "Total winnings"},
+        {name: "Total loses"},
+        {name: "Total draws"},
+        {name: "Total goal difference"}
     ]
 
     let chooseColor = (goalsToTeam1, goalsToTeam2) => {
@@ -62,13 +72,27 @@ const LeaguesList = (props) => {
                                     }
                                 </>
                             }
+
+                            {
+                                props.mode=="leagueTable"&&
+                                <>
+                                    {
+                                        leagueTableCell.map((cell) => {
+                                            return (
+                                                <TableCell align="center">{cell.name}</TableCell>
+                                            )
+                                        })
+                                    }
+                                </>
+                            }
+
+
                         </TableRow>
                     </TableHead>
-                    {
-                        props.mode == "result"&&
-                        <>
-                            <TableBody>
-                                {props.games.map((game) => (
+                    <TableBody>
+                         {
+                            props.mode == "result"&&
+                            props.games.map((game) => (
                                     <TableRow sx={{
                                         transition:  "0.1s linear",
                                         opacity: 0.85,
@@ -77,7 +101,7 @@ const LeaguesList = (props) => {
                                             backgroundColor:"rgba(168, 173, 170, 0.05)"
                                         }
                                     }}
-                                              key={key()}
+                                              key={randomUniqKey()}
                                     >
 
                                         <TableCell align="center"><span>{game.session}</span></TableCell>
@@ -100,19 +124,20 @@ const LeaguesList = (props) => {
                                         <TableCell align="center"><span>{game.goalsForeign}</span></TableCell>
                                         <TableCell align="center"><span>{game.goalsHome}</span></TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </>
-                    }
+                                ))
 
-                    {
-                        props.mode=="leagueTable"&&
-                        <TableBody>
-                            {
+                        }
 
-                            }
-                        </TableBody>
-                    }
+                        {
+                            props.mode=="leagueTable"&&
+                            props.leagues.map((league) => (
+                                <TableRow>
+
+                                </TableRow>
+                            ))
+
+                        }
+                    </TableBody>
                 </Table>
             </TableContainer>
 

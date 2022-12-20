@@ -14,7 +14,7 @@ import {
     Typography
 } from "@mui/material";
 
-import {key} from "../utilities/utilities"
+import {randomUniqKey} from "../utilities/utilities"
 
 
 const GameList = (props) => {
@@ -70,7 +70,7 @@ const GameList = (props) => {
                                    opacity: 1
                                },
                            }}
-                               key={key()}
+                               key={randomUniqKey()}
                            >
 
                                <TableCell align="center">{game.session}</TableCell>

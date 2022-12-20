@@ -4,10 +4,14 @@ import {Typography} from "@mui/material";
 import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
 import {objectIsEmpty} from "../utilities/utilities"
+import { getTeams, getTeamsName } from "../services/teamService"
 
 
 
 const AddEditGamesForm = (props) => {
+
+    const [teams, setTeams] = useState([])
+
 
     const gamesToEdit = [
 
@@ -64,7 +68,7 @@ const AddEditGamesForm = (props) => {
 
     const [games, setGames] = useState([])
 
-    const [teams, setTeams] = useState([
+    /*const [teams, setTeams] = useState([
         {id: 0, name: "team1"},
         {id: 1, name: "team2"},
         {id: 2, name: "team3"},
@@ -72,7 +76,7 @@ const AddEditGamesForm = (props) => {
         {id: 4, name: "team5"},
         {id: 5, name: "team6"},
         {id: 6, name: "team7"},
-    ])
+    ])*/
 
     const createGame = (newGame) => {
         setGames([...games, newGame])
