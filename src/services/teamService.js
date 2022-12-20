@@ -6,7 +6,7 @@ let teamsName=[];
  export let teams=[];
 
 
-export const getTeams= () => {
+export const getTeams= async () => {
     sendApiGetRequest(urlApi + "/get-all-teams", (response) => {
         if (response.data.success) {
             teams = response.data.teamsObjectList;
