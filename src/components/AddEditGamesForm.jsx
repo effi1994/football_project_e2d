@@ -16,6 +16,7 @@ const AddEditGamesForm = (props) => {
     const gamesToEdit = [
 
         {
+            userId: 0,
             session: 1,
             homeTeam: "team1",
             foreignTeam: "team2",
