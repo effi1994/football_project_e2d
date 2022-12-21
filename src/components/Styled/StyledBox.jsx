@@ -13,13 +13,6 @@ import {randomUniqKey} from "../../utilities/utilities"
 const StyledBox = (props) => {
     let width = window.innerWidth;
 
-    const [teams, setTeams] = useState([])
-
-    useEffect(() => {
-            setTeams(getTeamsName())
-
-    })
-
 
     const handleNumFieldChange = (e) => {
         let isNum = /^\d+$/.test(e.target.value);
@@ -54,6 +47,7 @@ const StyledBox = (props) => {
     //const [game, setGame] = useState(...props.game)
 
     const initialGame = {
+        userId: -1,
         session: 1,
         homeTeam: "",
         foreignTeam: "",
@@ -141,7 +135,7 @@ const StyledBox = (props) => {
             <FormControl disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                          sx={formControlSx}>
                 <InputLabel>Home team</InputLabel>
-                <Select sx={{ minWidth: 130, maxWidth: 140}}
+                <Select sx={{width: 150}}
                         name={"homeTeam"}
                         label="Home team"
                         value={game.homeTeam}
@@ -149,7 +143,7 @@ const StyledBox = (props) => {
                 >
                     {
 
-                        teams.map((team) => {
+                        props.teams.map((team) => {
                             return(
 
                                 <MenuItem
@@ -171,7 +165,7 @@ const StyledBox = (props) => {
                 disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                 sx={formControlSx}>
                 <InputLabel>Foreign team</InputLabel>
-                <Select sx={{ minWidth: 140, maxWidth: 140}}
+                <Select sx={{width: 150}}
                         label="Foreign team"
                         name={"foreignTeam"}
                         value={game.foreignTeam}
@@ -179,7 +173,7 @@ const StyledBox = (props) => {
                 >
 
                     {
-                        teams.map((team) => {
+                        props.teams.map((team) => {
                             return(
                                 <MenuItem
                                     key={randomUniqKey()}

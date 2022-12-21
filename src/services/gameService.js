@@ -27,7 +27,7 @@ export const getEndGames= async () => {
     })
 }
 
-export const addGame= (arrayGamesLive) => {
+export const addGame = (arrayGamesLive) => {
     sendApiPostRequest(urlApi + "/add-game", arrayGamesLive, (response) => {
         if (response.data.success) {
 

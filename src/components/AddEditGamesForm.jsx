@@ -5,12 +5,33 @@ import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
 import {objectIsEmpty} from "../utilities/utilities"
 import { getTeams, getTeamsName } from "../services/teamService"
+import { addGame } from "../services/gameService"
+import {getToken, getUser} from "../services/userAtuhService"
 
 
 
 const AddEditGamesForm = (props) => {
 
+    const [userId, setUserId] = useState(-1)
+
+    useEffect(() => {
+        let currentUser = getUser(getToken())
+        if (currentUser != null) {
+            setUserId(currentUser.id)
+        }
+    })
+
     const [teams, setTeams] = useState([])
+    useEffect(() => {
+        setTeams(getTeamsName())
+
+    })
+
+    const handleSaveAllGamesClick = () => {
+        addGame(games)
+        setGames([])
+        console.log(userId)
+    }
 
 
     const gamesToEdit = [
@@ -80,6 +101,7 @@ const AddEditGamesForm = (props) => {
     ])*/
 
     const createGame = (newGame) => {
+        newGame.userId = userId
         setGames([...games, newGame])
 
     }
@@ -152,6 +174,7 @@ const AddEditGamesForm = (props) => {
                                  sx={allGamesButtonSX}
                                  color={"success"}
                                  icon={"v"}
+                                 onClick={handleSaveAllGamesClick}
                    />
                    {
                        props.mode==1&&
