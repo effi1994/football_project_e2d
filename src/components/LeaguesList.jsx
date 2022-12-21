@@ -26,13 +26,16 @@ const LeaguesList = (props) => {
     ]
 
     const leagueTableCell = [
-        {name: "Place"},
-        {name: "Team name"},
-        {name: "Total points"},
-        {name: "Total winnings"},
-        {name: "Total loses"},
-        {name: "Total draws"},
-        {name: "Total goal difference"}
+        {name: ""},
+        {name: "Team"},
+        {name: "Played"},
+        {name: "Won"},
+        {name: "Draw"},
+        {name: "Lost"},
+        {name: "For"},
+        {name: "Against"},
+        {name: "GD"},
+        {name: "Points"},
     ]
 
     let chooseColor = (goalsToTeam1, goalsToTeam2) => {
@@ -45,7 +48,7 @@ const LeaguesList = (props) => {
 
         return "rgba(229, 231, 41, 0.87)"
     }
-
+ console.log(props.leagues)
     return (
         <>
             <TableContainer sx={{boxShadow: '5px 5px 20px #ccc',
@@ -61,7 +64,7 @@ const LeaguesList = (props) => {
                     <TableHead>
                         <TableRow>
                             {
-                                props.mode=="result"&&
+                                props.mode==="result"&&
                                 <>
                                     {
                                         gamesTableCell.map((cell) => {
@@ -74,7 +77,7 @@ const LeaguesList = (props) => {
                             }
 
                             {
-                                props.mode=="leagueTable"&&
+                                props.mode==="leagueTable"&&
                                 <>
                                     {
                                         leagueTableCell.map((cell) => {
@@ -91,7 +94,7 @@ const LeaguesList = (props) => {
                     </TableHead>
                     <TableBody>
                          {
-                            props.mode == "result"&&
+                            props.mode === "result"&&
                             props.games.map((game) => (
                                     <TableRow sx={{
                                         transition:  "0.1s linear",
@@ -104,7 +107,7 @@ const LeaguesList = (props) => {
                                               key={randomUniqKey()}
                                     >
 
-                                        <TableCell align="center"><span>{game.session}</span></TableCell>
+                                        <TableCell align="center"><span> { game.session}</span></TableCell>
                                         <TableCell align="center">
                                     <span
                                         style={{
@@ -129,10 +132,19 @@ const LeaguesList = (props) => {
                         }
 
                         {
-                            props.mode=="leagueTable"&&
-                            props.leagues.map((league) => (
-                                <TableRow>
-
+                            props.mode==="leagueTable"&&
+                            props.leagues.map((league,i) => (
+                                <TableRow key={league.id}>
+                                    <TableCell align="center">{i+1}</TableCell>
+                                    <TableCell align="center"><span>{league.nameTeams}</span></TableCell>
+                                    <TableCell align="center"><span>{league.games}</span></TableCell>
+                                    <TableCell align="center"><span>{league.wins}</span></TableCell>
+                                    <TableCell align="center"><span>{league.draws}</span></TableCell>
+                                    <TableCell align="center"><span>{league.losses}</span></TableCell>
+                                    <TableCell align="center"><span>{league.goalsFor}</span></TableCell>
+                                    <TableCell align="center"><span>{league.goalsAgainst}</span></TableCell>
+                                    <TableCell align="center"><span>{league.goalDifference}</span></TableCell>
+                                    <TableCell align="center"><span>{league.points}</span></TableCell>
                                 </TableRow>
                             ))
 
@@ -146,3 +158,4 @@ const LeaguesList = (props) => {
 };
 
 export default LeaguesList;
+

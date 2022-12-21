@@ -8,6 +8,8 @@ import Login from "../pages/Login";
 import {Container} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getToken} from "../services/userAtuhService";
+import {getTeams} from "../services/teamService";
+import {getAllGames,getEndGames,getLiveGames} from "../services/gameService";
 
 const AppContainer = () => {
 
@@ -15,11 +17,15 @@ const AppContainer = () => {
     const [token, setToken] = useState(null);
     useEffect( () => {
         if (getToken()){
+
             setToken(getToken());
 
         }else {
             setToken(null);
         }
+        getTeams();
+
+
     })
 
     const handleToken = (token) => {
