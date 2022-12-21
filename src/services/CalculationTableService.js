@@ -1,7 +1,7 @@
 import {teams} from "./teamService";
-import {endGames,liveGames} from "./gameService";
-let tableLeagueEnd=[];
-let tableLeagueLive=[];
+import {endGames,allGames} from "./gameService";
+export let tableLeagueEnd=[];
+export let tableLeagueLive=[];
 
 
 export const calculateTableLeague=  ()=>{
@@ -21,10 +21,7 @@ export const calculateTableLeague=  ()=>{
             points:0
         })
     });
-  console.log(teams1)
     let games=endGames;
-  console.log(games)
-
     games.forEach(game=>{
         let indexTeam1=tableLeague.findIndex(team=>team.nameTeams===game.homeTeam);
         let indexTeam2=tableLeague.findIndex(team=>team.nameTeams===game.foreignTeam);
@@ -51,7 +48,19 @@ export const calculateTableLeague=  ()=>{
             tableLeague[indexTeam2].points+=1;
         }
     });
-    tableLeague.sort((a,b)=>b.points-a.points);
+    tableLeague.sort((a,b)=>{
+        if (a.points > b.points) return -1;
+        if (a.points < b.points) return 1;
+        // If points are equal, sort by goal difference
+        if (a.goalDifference > b.goalDifference) return -1;
+        if (a.goalDifference < b.goalDifference) return 1;
+        // If goal difference is equal and points, sort by name tame
+        if (a.nameTeams.toString().toLowerCase() < b.nameTeams.toString().toLowerCase()) return -1;
+        if (a.nameTeams.toString().toLowerCase() > b.nameTeams.toString().toLowerCase()) return 1;
+
+        // If points and goal difference are equal, return 0
+        return 0;
+    });
     tableLeagueEnd=tableLeague;
     return tableLeague;
 }
@@ -73,8 +82,7 @@ export const calculateTableLeagueLive=  ()=>{
             points:0
         })
     });
-    console.log(liveGames)
-    let games=liveGames;
+    let games=allGames;
     games.forEach(game=>{
         let indexTeam1=tableLeague.findIndex(team=>team.nameTeams===game.homeTeam);
         let indexTeam2=tableLeague.findIndex(team=>team.nameTeams===game.foreignTeam);
@@ -101,7 +109,20 @@ export const calculateTableLeagueLive=  ()=>{
             tableLeague[indexTeam2].points+=1;
         }
     });
-    tableLeague.sort((a,b)=>b.points-a.points);
+
+    tableLeague.sort((a,b)=>{
+        if (a.points > b.points) return -1;
+        if (a.points < b.points) return 1;
+        // If points are equal, sort by goal difference
+        if (a.goalDifference > b.goalDifference) return -1;
+        if (a.goalDifference < b.goalDifference) return 1;
+        // If goal difference is equal and points, sort by name tame
+        if (a.nameTeams.toString().toLowerCase() < b.nameTeams.toString().toLowerCase()) return -1;
+        if (a.nameTeams.toString().toLowerCase() > b.nameTeams.toString().toLowerCase()) return 1;
+
+        // If points and goal difference are equal, return 0
+        return 0;
+    });
     tableLeagueLive=tableLeague;
     return tableLeague;
 }

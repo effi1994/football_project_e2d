@@ -1,9 +1,20 @@
 import React from 'react';
 import LeaguesList from "../components/LeaguesList";
+import {useEffect, useState} from "react";
+import {getTeams} from "../services/teamService";
+import {getLiveGames,liveGamesInDb} from "../services/gameService";
+
 
 const LiveResults = () => {
+    const [liveGames, setLiveGames] = useState([]);
+    useEffect(() => {
+        getTeams();
+        getLiveGames()
+        setLiveGames(liveGamesInDb);
+    })
 
-    const liveGames = [
+
+   /* const liveGames2 = [
         {
             session: 1,
             homeTeam: "team1",
@@ -34,7 +45,7 @@ const LiveResults = () => {
 
 
         }
-    ]
+    ]*/
 
     return (
         <>

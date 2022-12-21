@@ -1,19 +1,25 @@
 import React from 'react';
-import {calculateTableLeague} from "../services/CalculationTableService";
+import {calculateTableLeague,tableLeagueEnd} from "../services/CalculationTableService";
 import {useEffect, useState} from "react";
-import {getTeams,teams} from "../services/teamService";
-import {getEndGames ,endGames} from "../services/gameService";
+import {getTeams} from "../services/teamService";
+import {getEndGames} from "../services/gameService";
+import LeaguesList from "../components/LeaguesList";
 
 const LeagueTable = () => {
     const [tableLeague, setTableLeague] = React.useState([]);
+
+    useEffect(() => {
+        getTeams();
+        getEndGames();
+        calculateTableLeague();
+        setTableLeague(tableLeagueEnd);
+    })
 
 
 
     return (
         <div>
-            LeagueTable
-
-
+            <LeaguesList leagues={tableLeague} mode={"leagueTable"}/>
         </div>
     );
 };
