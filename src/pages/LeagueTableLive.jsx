@@ -19,9 +19,11 @@ const LeagueTableLive = () => {
 
     return (
         <div>
-            League Table live
+            <LeaguesList leagues={lifeTable} mode={"leagueTable"}/>
         </div>
     );
+
+
 };
 
 export default LeagueTableLive;
