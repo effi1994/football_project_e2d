@@ -48,7 +48,7 @@ const LeaguesList = (props) => {
 
         return "rgba(229, 231, 41, 0.87)"
     }
- console.log(props.leagues)
+    console.log(props.games)
     return (
         <>
             <TableContainer sx={{boxShadow: '5px 5px 20px #ccc',
@@ -107,11 +107,11 @@ const LeaguesList = (props) => {
                                               key={randomUniqKey()}
                                     >
 
-                                        <TableCell align="center"><span> { game.session}</span></TableCell>
+                                        <TableCell align="center"><span> { game.gameSession}</span></TableCell>
                                         <TableCell align="center">
                                     <span
                                         style={{
-                                            color:chooseColor(game.goalsForeign, game.goalsHome)}}
+                                            color:chooseColor(game.foreignScore, game.homeScore)}}
                                     >
                                             {game.homeTeam}
                                     </span>
@@ -119,13 +119,13 @@ const LeaguesList = (props) => {
                                         <TableCell align="center">
                                     <span
                                         style={{
-                                            color: chooseColor(game.goalsHome, game.goalsForeign)}}
+                                            color: chooseColor(game.homeScore, game.foreignScore)}}
                                     >
                                             {game.foreignTeam}
                                     </span>
                                         </TableCell>
-                                        <TableCell align="center"><span>{game.goalsForeign}</span></TableCell>
-                                        <TableCell align="center"><span>{game.goalsHome}</span></TableCell>
+                                        <TableCell align="center"><span>{game.foreignScore}</span></TableCell>
+                                        <TableCell align="center"><span>{game.homeScore}</span></TableCell>
                                     </TableRow>
                                 ))
 
@@ -156,6 +156,16 @@ const LeaguesList = (props) => {
         </>
     );
 };
+//{
+//     "id": 3,
+//     "gameSession": "1",
+//     "homeTeam": "Chelsea",
+//     "foreignTeam": "Real Madrid CF",
+//     "homeScore": 3,
+//     "foreignScore": 3,
+//     "userId": "\u0001",
+//     "live": true
+// }
 
 export default LeaguesList;
 

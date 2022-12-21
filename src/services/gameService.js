@@ -2,16 +2,17 @@ import {sendApiGetRequest, sendApiPostRequest} from "./ApiRequests";
 
 import config from "../config.json";
 let urlApi= config.apiUrl;
-export let liveGames=[];
+export let liveGamesInDb=[];
 export let endGames=[];
 export let allGames=[];
 
 export const getLiveGames= () => {
     sendApiGetRequest(urlApi + "/get-live-games", (response) => {
         if (response.data.success) {
-            liveGames = response.data.gamesObjectList;
+            liveGamesInDb = response.data.gamesObjectList;
+
         }else {
-            liveGames = null;
+            liveGamesInDb = null;
         }
     })
 }

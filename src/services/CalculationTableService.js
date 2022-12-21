@@ -124,7 +124,6 @@ export const calculateTableLeagueLive=  ()=>{
         return 0;
     });
     tableLeagueLive=tableLeague;
-    console.log(tableLeagueLive)
     return tableLeague;
 }
 
