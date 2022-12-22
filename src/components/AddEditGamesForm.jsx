@@ -151,6 +151,14 @@ const AddEditGamesForm = (props) => {
 
     }
 
+    const handleEndGames = () => {
+        games.map(game => game.live=false);
+        updateEndGames(games)
+        setGames([]);
+    }
+
+
+
     const handleEditGame = (index) => {
         setEditGame(games[index])
 
@@ -202,6 +210,7 @@ const AddEditGamesForm = (props) => {
                    />
                    {
                        props.mode==1&&
+
                        <StyledButton text={"Remove all games"}
                                      sx={allGamesButtonSX}
                                      color={"warning"}
