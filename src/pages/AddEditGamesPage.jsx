@@ -46,7 +46,7 @@ const AddEditGamesPage = () => {
                     />
                 </>
                 :
-                <AddEditGamesForm mode={mode}/>
+                <AddEditGamesForm mode={mode} onClick={onClick}/>
             }
 
 

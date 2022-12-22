@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import StyledBox from "./Styled/StyledBox";
-import {Typography} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
 import {objectIsEmpty} from "../utilities/utilities"
 import { getTeams, getTeamsName } from "../services/teamService"
-import { addGame ,updateGameLive,endGames,getLiveGames} from "../services/gameService"
+import { addGame ,updateGameLive,endGames,getLiveGames,updateEndGames} from "../services/gameService"
 import {getToken, getUser} from "../services/userAtuhService"
 
 
@@ -156,9 +156,23 @@ const AddEditGamesForm = (props) => {
 
     }
 
+    const gamesPageButtonSx = {
+        marginRight: 150,
+        marginTop: 3,
+        borderRadius: 3,
+
+    }
+
    return(
        <>
-
+           <StyledButton
+               text={"Back"}
+               onClick={props.onClick}
+               sx={gamesPageButtonSx}
+               value={0}
+               color={"error"}
+               icon={"→"}
+           />
            <Typography variant={"h4"} padding={2} textAlign={"center"}>{props.mode==1 ? objectIsEmpty(editGame)? "Add games" : "Edit game" :"Edit existing games"}</Typography>
            <StyledBox create={createGame}
                       update={update}
@@ -178,7 +192,7 @@ const AddEditGamesForm = (props) => {
            }
 
            {
-               games.length > 0&&
+               games.length > 0 && props.mode==1  &&
                <>
                    <StyledButton text={"Save all games"}
                                  sx={allGamesButtonSX}
@@ -197,6 +211,17 @@ const AddEditGamesForm = (props) => {
                        />
                    }
                </>
+           }
+
+           {
+               props.mode == 2 &&
+               <StyledButton text={"End All Games "}
+                             sx={allGamesButtonSX}
+                             color={"warning"}
+                             icon={"v"}
+                             onClick={handleEndGames}
+               />
+
            }
 
        </>

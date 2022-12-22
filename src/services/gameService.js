@@ -31,7 +31,6 @@ export const getEndGames= async () => {
 }
 
 export const addGame = (arrayGamesLive) => {
-  debugger;
     sendApiPostRequestWithBody(urlApi + "add-games", arrayGamesLive, (response) => {
         if (response.data.success) {
 
@@ -67,7 +66,7 @@ export const updateGameLive= (gameLive) => {
 }
 
 export const  updateEndGames =(arrayGamesLive)=>{
-    sendApiPostRequest(urlApi + "/end-games", arrayGamesLive, (response) => {
+    sendApiPostRequestWithBody(urlApi + "/end-games", arrayGamesLive, (response) => {
         if (response.data.success) {
 
         }else {
