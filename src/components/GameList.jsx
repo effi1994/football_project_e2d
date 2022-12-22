@@ -73,12 +73,12 @@ const GameList = (props) => {
                                key={randomUniqKey()}
                            >
 
-                               <TableCell align="center">{game.session}</TableCell>
+                               <TableCell align="center">{game.gameSession}</TableCell>
                                <TableCell align="center">{game.homeTeam}</TableCell>
                                <TableCell align="center">{game.foreignTeam}</TableCell>
-                               <TableCell align="center">{game.goalsForeign}</TableCell>
-                               <TableCell align="center">{game.goalsHome}</TableCell>
-                               <TableCell align="center">{!game.isLive ? "Yes" : "No"}</TableCell>
+                               <TableCell align="center">{game.foreignScore}</TableCell>
+                               <TableCell align="center">{game.homeScore}</TableCell>
+                               <TableCell align="center">{!game.live ? "Yes" : "No"}</TableCell>
                                {
                                    props.mode == 1&&
                                    <TableCell align={"right"}>

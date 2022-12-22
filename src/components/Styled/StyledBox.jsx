@@ -51,8 +51,8 @@ const StyledBox = (props) => {
         gameSession: 1,
         homeTeam: "",
         foreignTeam: "",
-        goalsForeign: 0,
-        goalsHome: 0,
+        foreignScore: 0,
+        homeScore: 0,
         live: true
 
 
@@ -64,7 +64,7 @@ const StyledBox = (props) => {
     const handleCheckBoxChange = (e) => {
         setGame((prevState => ({
             ...prevState,
-            isLive: !game.isLive
+            live: !game.live
         })))
     }
 
@@ -122,10 +122,10 @@ const StyledBox = (props) => {
                 <TextField
                     disabled={objectIsEmpty(props.editGame) && props.mode!=1}
                     sx={{maxWidth:100}}
-                    name={"session"}
+                    name={"gameSession"}
                     label="Session"
                     type="number"
-                    value={game.session}
+                    value={game.gameSession}
                     onChange={handleNumFieldChange}
                     InputProps={{ inputProps: { min: sessionMinVal } }}
 
@@ -198,8 +198,8 @@ const StyledBox = (props) => {
                     id="outlined-number"
                     label="Goals to foreign"
                     type="number"
-                    name={"goalsForeign"}
-                    value={game.goalsForeign}
+                    name={"foreignScore"}
+                    value={game.foreignScore}
                     InputProps={{ inputProps: { min: goalsForeignMinVal } }}
                     onChange={handleNumFieldChange}
                 />
@@ -214,8 +214,8 @@ const StyledBox = (props) => {
                     id="outlined-number"
                     label="Goals to home"
                     type="number"
-                    name={"goalsHome"}
-                    value={game.goalsHome}
+                    name={"homeScore"}
+                    value={game.homeScore}
                     InputProps={{ inputProps: { min: goalsHomeMinVal } }}
                     onChange={handleNumFieldChange}
                 />
@@ -225,15 +225,15 @@ const StyledBox = (props) => {
 
             {
                 props.mode != 1&&
-                <Tooltip title={game.isLive ? "Mark the game as completed": "Mark the game as in live"}>
+                <Tooltip title={game.live ? "Mark the game as completed": "Mark the game as in live"}>
                     <Checkbox icon={<VideogameAssetRoundedIcon/>}
                               checkedIcon={<VideogameAssetOffRoundedIcon/>}
                               size={"large"}
                               sx={{marginLeft:"auto"}}
-                              value={game.isLive}
+                              value={game.live}
                               onChange={handleCheckBoxChange}
                               disabled={objectIsEmpty(props.editGame)}
-                              checked={!game.isLive}
+                              checked={!game.live}
                     />
                 </Tooltip>
             }

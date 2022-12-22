@@ -5,7 +5,7 @@ import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
 import {objectIsEmpty} from "../utilities/utilities"
 import { getTeams, getTeamsName } from "../services/teamService"
-import { addGame } from "../services/gameService"
+import { addGame ,updateGameLive,endGames,getLiveGames} from "../services/gameService"
 import {getToken, getUser} from "../services/userAtuhService"
 
 
@@ -13,25 +13,31 @@ import {getToken, getUser} from "../services/userAtuhService"
 const AddEditGamesForm = (props) => {
 
     const [userId, setUserId] = useState(null)
+    const [teams, setTeams] = useState([])
+    const [gameLive, setGameLive] = useState([])
+    const [editGame, setEditGame] = useState({});
+    const [games, setGames] = useState([])
 
     useEffect(() => {
-        let currentUser = getUser(getToken())
+        let currentUser = getUser(getToken());
+        setGameLive(getLiveGames());
+        setTeams(getTeamsName())
         if (currentUser != null) {
             setUserId(currentUser.id)
         }
-    })
+        if (props.mode!=1) {
+            setGames(getLiveGames())
+        }
 
-    const [teams, setTeams] = useState([])
-    useEffect(() => {
-        setTeams(getTeamsName())
 
-    })
+    },[])
+
+
+
 
     const handleSaveAllGamesClick = () => {
-        debugger
         addGame(games)
         setGames([])
-        console.log(userId)
     }
 
 
@@ -71,12 +77,12 @@ const AddEditGamesForm = (props) => {
 
     ]
 
-    useEffect(() => {
+  /*  useEffect(() => {
         if (props.mode!=1) {
             setGames(gamesToEdit)
         }
 
-    },[props.mode])
+    },[props.mode])*/
 
     const allGamesButtonSX = {
         marginTop: 2,
@@ -87,9 +93,7 @@ const AddEditGamesForm = (props) => {
 
 
 
-    const [editGame, setEditGame] = useState({});
 
-    const [games, setGames] = useState([])
 
     /*const [teams, setTeams] = useState([
         {id: 0, name: "team1"},
@@ -119,7 +123,12 @@ const AddEditGamesForm = (props) => {
         })
 
         const currentGames=games
+
         currentGames[index]=updatedGame
+        updateGameLive(currentGames[index]);
+        if (currentGames[index].live === false) {
+            currentGames.splice(index, 1);
+        }
         setGames(currentGames)
         setEditGame({})
 

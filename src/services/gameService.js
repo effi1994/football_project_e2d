@@ -54,7 +54,7 @@ export const getAllGames= () => {
     })
 }
 
-export const updateGame= (gameLive) => {
+export const updateGameLive= (gameLive) => {
     sendApiPostRequest(urlApi + "/update-game", gameLive, (response) => {
         if (response.data.success) {
 
