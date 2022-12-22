@@ -3,13 +3,14 @@ import {AppBar, Box, Button, IconButton, List, Toolbar, Tooltip} from "@mui/mate
 import {NavLink, useNavigate} from "react-router-dom";
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import {getToken} from "../services/userAtuhService";
+import {getToken,logout} from "../services/userAtuhService";
 
 const links = [
     {titlePage: "Live results", path: "/"},
     {titlePage: "League table", path: "/league-table"},
     {titlePage: "League table live", path: "/league-table-live"},
-    {titlePage: "Login", path: "/login"}
+    {titlePage: "Login", path: "/login"},
+
 ]
 
 const buttonSX = {
@@ -21,9 +22,15 @@ const buttonSX = {
 }
 
 const Header = (props) => {
-    links[3].titlePage= props.token  || getToken() ? "Logout" : "Login";
+    links[3].titlePage= props.token  || getToken() ? "Add/Edit games" : "Login";
+
 
     const navigate = useNavigate();
+    const handleLogout = () => {
+        logout();
+        navigate("/login");
+    }
+
 
     return (
         <>
@@ -42,6 +49,13 @@ const Header = (props) => {
                                     {titlePage}
                                 </Button>
                             ))}
+                            {
+                                props.token !=null && getToken() !==undefined   &&
+                                <Button onClick={handleLogout} sx={buttonSX} color={"inherit"} variant="text">
+                                    Logout
+                                </Button>
+                            }
+
 
                             {/* to do: onclick*/}
                             <span style={{alignItems:"center", marginLeft:100}}>

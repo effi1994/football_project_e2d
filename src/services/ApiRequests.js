@@ -19,3 +19,11 @@ export const sendApiPostRequest = (request, params, callback) => {
         }
     })
 }
+
+export const sendApiPostRequestWithBody = (request, body, callback) => {
+    axios.post(request, body).then(response => {
+        if (callback) {
+            callback(response);
+        }
+    })
+}

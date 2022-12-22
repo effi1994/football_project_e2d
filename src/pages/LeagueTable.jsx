@@ -13,7 +13,17 @@ const LeagueTable = () => {
         getEndGames();
         calculateTableLeague();
         setTableLeague(tableLeagueEnd);
-    })
+        const interval = setInterval(() => {
+            getTeams();
+            getEndGames();
+            calculateTableLeague();
+            setTableLeague(tableLeagueEnd);
+        }, 1000);
+
+        return () => clearInterval(interval);
+
+
+    },[])
 
 
 

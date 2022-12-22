@@ -12,7 +12,7 @@ import {getToken, getUser} from "../services/userAtuhService"
 
 const AddEditGamesForm = (props) => {
 
-    const [userId, setUserId] = useState(-1)
+    const [userId, setUserId] = useState(null)
 
     useEffect(() => {
         let currentUser = getUser(getToken())
@@ -28,6 +28,7 @@ const AddEditGamesForm = (props) => {
     })
 
     const handleSaveAllGamesClick = () => {
+        debugger
         addGame(games)
         setGames([])
         console.log(userId)

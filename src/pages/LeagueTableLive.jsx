@@ -13,8 +13,14 @@ const LeagueTableLive = () => {
         getAllGames();
         calculateTableLeagueLive();
         setLifeTable(tableLeagueLive);
-
-    })
+        const interval = setInterval(() => {
+            getTeams();
+            getAllGames();
+            calculateTableLeagueLive();
+            setLifeTable(tableLeagueLive);
+        }, 1000);
+        return () => clearInterval(interval);
+    },[])
 
 
     return (

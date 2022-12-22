@@ -5,13 +5,23 @@ import {getTeams} from "../services/teamService";
 import {getLiveGames,liveGamesInDb} from "../services/gameService";
 
 
-const LiveResults = () => {
+const LiveResults = (props) => {
     const [liveGames, setLiveGames] = useState([]);
     useEffect(() => {
-        getTeams();
+
         getLiveGames()
         setLiveGames(liveGamesInDb);
-    })
+        const interval = setInterval(() => {
+            getLiveGames()
+            setLiveGames(liveGamesInDb);
+        }, 2000);
+
+        return () => clearInterval(interval);
+
+    },[])
+
+
+    
 
 
    /* const liveGames2 = [

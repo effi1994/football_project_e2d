@@ -1,4 +1,4 @@
-import {sendApiGetRequest, sendApiPostRequest} from "./ApiRequests";
+import {sendApiGetRequest, sendApiPostRequest,sendApiPostRequestWithBody} from "./ApiRequests";
 
 import config from "../config.json";
 let urlApi= config.apiUrl;
@@ -11,10 +11,12 @@ export const getLiveGames= () => {
         if (response.data.success) {
             liveGamesInDb = response.data.gamesObjectList;
 
+
         }else {
             liveGamesInDb = null;
         }
     })
+    return liveGamesInDb;
 }
 
 export const getEndGames= async () => {
@@ -29,7 +31,8 @@ export const getEndGames= async () => {
 }
 
 export const addGame = (arrayGamesLive) => {
-    sendApiPostRequest(urlApi + "/add-game", arrayGamesLive, (response) => {
+  debugger;
+    sendApiPostRequestWithBody(urlApi + "add-games", arrayGamesLive, (response) => {
         if (response.data.success) {
 
           return response.data.gamesObjectList;

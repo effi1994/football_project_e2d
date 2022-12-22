@@ -47,13 +47,13 @@ const StyledBox = (props) => {
     //const [game, setGame] = useState(...props.game)
 
     const initialGame = {
-        userId: -1,
-        session: 1,
+        userId: 1,
+        gameSession: 1,
         homeTeam: "",
         foreignTeam: "",
         goalsForeign: 0,
         goalsHome: 0,
-        isLive: true
+        live: true
 
 
     }

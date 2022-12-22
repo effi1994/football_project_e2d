@@ -17,6 +17,8 @@ import {randomUniqKey} from "../utilities/utilities"
 const LeaguesList = (props) => {
     let width = window.innerWidth;
 
+
+
     const gamesTableCell = [
         {name: "Session"},
         {name: "Home team"},
@@ -48,7 +50,6 @@ const LeaguesList = (props) => {
 
         return "rgba(229, 231, 41, 0.87)"
     }
-    console.log(props.games)
     return (
         <>
             <TableContainer sx={{boxShadow: '5px 5px 20px #ccc',

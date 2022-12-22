@@ -30,6 +30,11 @@ export const getToken = () => {
     //return localStorage.getItem(config.tokenKey);
 }
 
+export const logout = () => {
+    cookies.remove(config.tokenKey);
+    user = null;
+}
+
 export const getUser = (token) => {
 
     sendApiPostRequest(urlApi + "/get-user-by-token", {token}, (response) => {

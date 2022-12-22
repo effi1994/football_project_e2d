@@ -16,6 +16,7 @@ const AppContainer = () => {
     let location = useLocation();
     const [token, setToken] = useState(null);
     useEffect( () => {
+        getLiveGames();
         if (getToken()){
 
             setToken(getToken());
