@@ -83,26 +83,31 @@ const GameList = (props) => {
                                    props.mode == 1&&
                                    <TableCell align={"right"}>
                                        <Tooltip title={"Delete game"}>
-                                           <IconButton
-                                               onClick={() => props.handleRemove(index)}
-                                               color={"error"} aria-label="delete">
-                                               <DeleteIcon/>
-                                           </IconButton>
+                                           <span>
+                                               <IconButton
+                                                    onClick={() => props.handleRemove(index)}
+                                                    color={"error"} aria-label="delete"
+                                               >
+                                                    <DeleteIcon/>
+                                               </IconButton>
+                                           </span>
                                        </Tooltip>
                                    </TableCell>
                                }
                                <TableCell align={props.mode==1 ? "left" : "center"}>
                                    <Tooltip title={"Edit game"}>
-                                       <IconButton
-                                           disabled={editIndex >= 0}
-                                           value={editIndex}
-                                           onClick={() => {
-                                               setEditIndex(index)
-                                               props.handleEdit(index)
-                                           }}
-                                           color={"info"} aria-label="edit">
+                                       <span>
+                                           <IconButton
+                                               disabled={editIndex >= 0}
+                                               value={editIndex}
+                                               onClick={() => {
+                                                   setEditIndex(index)
+                                                   props.handleEdit(index)
+                                               }}
+                                               color={"info"} aria-label="edit">
                                            <EditIcon />
                                        </IconButton>
+                                       </span>
                                    </Tooltip>
                                </TableCell>
                            </TableRow>

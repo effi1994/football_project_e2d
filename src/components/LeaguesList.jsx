@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {randomUniqKey} from "../utilities/utilities"
 import {
     IconButton,
     Paper,
@@ -11,7 +12,6 @@ import {
     Tooltip
 } from "@mui/material";
 
-import {randomUniqKey} from "../utilities/utilities"
 
 
 const LeaguesList = (props) => {
@@ -70,7 +70,7 @@ const LeaguesList = (props) => {
                                     {
                                         gamesTableCell.map((cell) => {
                                             return (
-                                                <TableCell align="center">{cell.name}</TableCell>
+                                                <TableCell key={randomUniqKey()} align="center">{cell.name}</TableCell>
                                             )
                                         })
                                     }
@@ -83,7 +83,7 @@ const LeaguesList = (props) => {
                                     {
                                         leagueTableCell.map((cell) => {
                                             return (
-                                                <TableCell align="center">{cell.name}</TableCell>
+                                                <TableCell key={randomUniqKey()} align="center">{cell.name}</TableCell>
                                             )
                                         })
                                     }
@@ -135,7 +135,7 @@ const LeaguesList = (props) => {
                         {
                             props.mode==="leagueTable"&&
                             props.leagues.map((league,i) => (
-                                <TableRow key={league.id}>
+                                <TableRow key={randomUniqKey()}>
                                     <TableCell align="center">{i+1}</TableCell>
                                     <TableCell align="center"><span>{league.nameTeams}</span></TableCell>
                                     <TableCell align="center"><span>{league.games}</span></TableCell>

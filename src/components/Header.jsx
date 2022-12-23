@@ -1,9 +1,8 @@
 import React from 'react';
 import {AppBar, Box, Button, IconButton, List, Toolbar, Tooltip} from "@mui/material";
 import {NavLink, useNavigate} from "react-router-dom";
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import {getToken,logout} from "../services/userAtuhService";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const links = [
     {titlePage: "Live results", path: "/"},
@@ -51,26 +50,16 @@ const Header = (props) => {
                             ))}
                             {
                                 props.token !=null && getToken() !==undefined   &&
-                                <Button onClick={handleLogout} sx={buttonSX} color={"inherit"} variant="text">
+                                <Button
+                                    endIcon={<LogoutIcon/>}
+                                    onClick={handleLogout}
+                                    sx={buttonSX}
+                                    color={"inherit"}
+                                    variant="text">
                                     Logout
                                 </Button>
                             }
 
-
-                            {/* to do: onclick*/}
-                            <span style={{alignItems:"center", marginLeft:100}}>
-                                <Tooltip title={"Go back"}>
-                                <IconButton onClick={() => navigate(-1)}>
-                                    <ArrowBackOutlinedIcon/>
-                                </IconButton>
-                            </Tooltip>
-                                {/*hello world*/}
-                                <Tooltip title={"Go forward"}>
-                                <IconButton onClick={() => navigate(1)}>
-                                    <ArrowForwardOutlinedIcon/>
-                                </IconButton>
-                            </Tooltip>
-                           </span>
                         </List>
                         <span sx={{marginRight:0}}>
                                      <img src={"/football_ball_jwo7871eemc0.svg"}

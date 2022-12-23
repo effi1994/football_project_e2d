@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Checkbox, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip} from "@mui/material";
+import {Alert, Box, Checkbox, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip} from "@mui/material";
 import StyledButton from "./StyledButton";
 import VideogameAssetRoundedIcon from '@mui/icons-material/VideogameAssetRounded';
 import VideogameAssetOffRoundedIcon from '@mui/icons-material/VideogameAssetOffRounded';
@@ -100,12 +100,14 @@ const StyledBox = (props) => {
     }
 
     return (
+
         <Box display={"flex"}
              flexDirection={"column"}
              maxWidth={width-(width*(1/4))}
              margin={"auto"}
              justifyContent={"center"}
              marginTop={0}
+             borderRadius={3}
              padding={3}
              boxShadow={'5px 5px 10px #ccc'}
              disabled={true}
@@ -209,7 +211,7 @@ const StyledBox = (props) => {
                 sx={formControlSx}>
                 <InputLabel></InputLabel>
                 <TextField
-                    disabled={objectIsEmpty(props.editGame) && props.mode!=1}
+                    disabled={objectIsEmpty(props.editGame) && props.mode !=1 }
                     sx={{maxWidth:150}}
                     id="outlined-number"
                     label="Goals to home"
@@ -226,15 +228,17 @@ const StyledBox = (props) => {
             {
                 props.mode != 1&&
                 <Tooltip title={game.live ? "Mark the game as completed": "Mark the game as in live"}>
-                    <Checkbox icon={<VideogameAssetRoundedIcon/>}
-                              checkedIcon={<VideogameAssetOffRoundedIcon/>}
-                              size={"large"}
-                              sx={{marginLeft:"auto"}}
-                              value={game.live}
-                              onChange={handleCheckBoxChange}
-                              disabled={objectIsEmpty(props.editGame)}
-                              checked={!game.live}
-                    />
+                    <span>
+                        <Checkbox icon={<VideogameAssetRoundedIcon/>}
+                        checkedIcon={<VideogameAssetOffRoundedIcon/>}
+                        size={"large"}
+                        sx={{marginLeft:"auto"}}
+                        value={game.live}
+                        onChange={handleCheckBoxChange}
+                        disabled={objectIsEmpty(props.editGame)}
+                        checked={!game.live}
+                        />
+                    </span>
                 </Tooltip>
             }
 
@@ -257,7 +261,6 @@ const StyledBox = (props) => {
                                   color={"info"}
                     />
             }
-
 
 
         </Box>

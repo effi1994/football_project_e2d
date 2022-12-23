@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import StyledBox from "./Styled/StyledBox";
-import {Button, Typography} from "@mui/material";
+import {Alert, Button, Typography} from "@mui/material";
 import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
 import {objectIsEmpty} from "../utilities/utilities"
@@ -14,13 +14,13 @@ const AddEditGamesForm = (props) => {
 
     const [userId, setUserId] = useState(null)
     const [teams, setTeams] = useState([])
-    const [gameLive, setGameLive] = useState([])
+    //const [gameLive, setGameLive] = useState([])
     const [editGame, setEditGame] = useState({});
     const [games, setGames] = useState([])
 
     useEffect(() => {
         let currentUser = getUser(getToken());
-        setGameLive(getLiveGames());
+        //setGameLive(getLiveGames());
         setTeams(getTeamsName())
         if (currentUser != null) {
             setUserId(currentUser.id)
@@ -32,6 +32,12 @@ const AddEditGamesForm = (props) => {
 
     },[])
 
+    useEffect(() => {
+        if (props.mode==2) {
+            setGames(props.liveGames)
+        }
+    },[props.liveGames])
+
 
 
 
@@ -40,7 +46,7 @@ const AddEditGamesForm = (props) => {
         setGames([])
     }
 
-
+/*
     const gamesToEdit = [
 
         {
@@ -74,15 +80,8 @@ const AddEditGamesForm = (props) => {
 
 
         }
+    ]*/
 
-    ]
-
-  /*  useEffect(() => {
-        if (props.mode!=1) {
-            setGames(gamesToEdit)
-        }
-
-    },[props.mode])*/
 
     const allGamesButtonSX = {
         marginTop: 2,
@@ -179,58 +178,68 @@ const AddEditGamesForm = (props) => {
                sx={gamesPageButtonSx}
                value={0}
                color={"error"}
-               icon={"→"}
+               icon={"<-"}
            />
-           <Typography variant={"h4"} padding={2} textAlign={"center"}>{props.mode==1 ? objectIsEmpty(editGame)? "Add games" : "Edit game" :"Edit existing games"}</Typography>
-           <StyledBox create={createGame}
-                      update={update}
-                      editGame={editGame}
-                      teams={teams}
-                      mode={props.mode}
-           />
-           {
-               games.length > 0&&
-               <GameList games={games}
-                         teams={teams}
-                         handleRemove={handleRemoveGame}
-                         handleEdit={handleEditGame}
-                         editGame={editGame}
-                         mode={props.mode}
-               />
-           }
 
            {
-               games.length > 0 && props.mode==1  &&
-               <>
-                   <StyledButton text={"Save all games"}
-                                 sx={allGamesButtonSX}
-                                 color={"success"}
-                                 icon={"v"}
-                                 onClick={handleSaveAllGamesClick}
-                   />
-                   {
-                       props.mode==1&&
+               props.mode!=1&&(objectIsEmpty(games) || objectIsEmpty(props.liveGames))?
+                   <Alert sx={{marginTop:10}} severity="warning">There is no live games yet</Alert>
+                   :
+                   <>
 
-                       <StyledButton text={"Remove all games"}
-                                     sx={allGamesButtonSX}
-                                     color={"warning"}
-                                     icon={"x"}
-                                     onClick={handleRemoveAllGames}
-
+                       <Typography variant={"h4"} padding={2} textAlign={"center"}>{props.mode==1 ? objectIsEmpty(editGame)? "Add games" : "Edit game" :"Edit existing games"}</Typography>
+                       <StyledBox create={createGame}
+                                  update={update}
+                                  editGame={editGame}
+                                  teams={teams}
+                                  mode={props.mode}
                        />
-                   }
-               </>
-           }
+                       {
+                           games.length > 0&&
+                           <GameList games={games}
+                                     teams={teams}
+                                     handleRemove={handleRemoveGame}
+                                     handleEdit={handleEditGame}
+                                     editGame={editGame}
+                                     mode={props.mode}
+                           />
+                       }
 
-           {
-               props.mode == 2 &&
-               <StyledButton text={"End All Games "}
-                             sx={allGamesButtonSX}
-                             color={"warning"}
-                             icon={"v"}
-                             onClick={handleEndGames}
-               />
+                       {
+                           games.length > 0 && props.mode==1  &&
+                           <>
+                               <StyledButton text={"Save all games"}
+                                             sx={allGamesButtonSX}
+                                             color={"success"}
+                                             icon={"v"}
+                                             onClick={handleSaveAllGamesClick}
+                               />
+                               {
+                                   props.mode==1&&
 
+                                   <StyledButton text={"Remove all games"}
+                                                 sx={allGamesButtonSX}
+                                                 color={"warning"}
+                                                 icon={"x"}
+                                                 onClick={handleRemoveAllGames}
+
+                                   />
+                               }
+                           </>
+                       }
+
+                       {
+                           props.mode == 2 &&
+                           <StyledButton text={"End All Games "}
+                                         sx={allGamesButtonSX}
+                                         color={"warning"}
+                                         icon={"v"}
+                                         onClick={handleEndGames}
+                           />
+
+                       }
+
+                   </>
            }
 
        </>

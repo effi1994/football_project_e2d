@@ -2,13 +2,19 @@ import React, {useEffect, useState} from 'react';
 import StyledButton from "../components/Styled/StyledButton";
 import AddEditGamesForm from "../components/AddEditGamesForm";
 import {getTeams} from "../services/teamService";
+import {getLiveGames} from "../services/gameService";
 
 const AddEditGamesPage = () => {
     const[mode, setMode] = useState(0)
+    const [gameLive, setGameLive] = useState([])
 
     useEffect(() => {
         getTeams()
     },[])
+
+    useEffect(() => {
+        setGameLive(getLiveGames())
+    },[getLiveGames()])
 
     const onClick = (e) => {
 
@@ -46,7 +52,7 @@ const AddEditGamesPage = () => {
                     />
                 </>
                 :
-                <AddEditGamesForm mode={mode} onClick={onClick}/>
+                <AddEditGamesForm mode={mode} onClick={onClick} liveGames={gameLive} />
             }
 
 
