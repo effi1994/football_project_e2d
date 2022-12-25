@@ -6,7 +6,7 @@ import {getAllGames} from "../services/gameService";
 import  LeaguesList from "../components/LeaguesList";
 
 const LeagueTableLive = () => {
-    const [lifeTable,setLifeTable] = React.useState([]);
+    const [lifeTable,setLifeTable] = useState([]);
 
     useEffect(()=>{
         getTeams();

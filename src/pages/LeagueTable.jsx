@@ -6,7 +6,7 @@ import {getEndGames} from "../services/gameService";
 import LeaguesList from "../components/LeaguesList";
 
 const LeagueTable = () => {
-    const [tableLeague, setTableLeague] = React.useState([]);
+    const [tableLeague, setTableLeague] = useState([]);
 
     useEffect(() => {
         getTeams();
@@ -19,10 +19,7 @@ const LeagueTable = () => {
             calculateTableLeague();
             setTableLeague(tableLeagueEnd);
         }, 1000);
-
         return () => clearInterval(interval);
-
-
     },[])
 
 

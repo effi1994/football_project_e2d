@@ -16,7 +16,6 @@ export const login = (username, password,callback) => {
             debugger
             user = response.data.userObject;
             cookies.set(config.tokenKey, user.token, { path: '/', expires: new Date(Date.now() + 1000*60*60*24) });
-            //localStorage.setItem(config.tokenKey, user.token);
             callback(user.token);
         }else {
          user = null;
@@ -27,7 +26,6 @@ export const login = (username, password,callback) => {
 
 export const getToken = () => {
     return cookies.get(config.tokenKey);
-    //return localStorage.getItem(config.tokenKey);
 }
 
 export const logout = () => {
@@ -36,7 +34,6 @@ export const logout = () => {
 }
 
 export const getUser = (token) => {
-
     sendApiPostRequest(urlApi + "/get-user-by-token", {token}, (response) => {
         if (response.data.success) {
             user = response.data.userObject;
