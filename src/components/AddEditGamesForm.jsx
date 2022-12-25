@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import StyledBox from "./Styled/StyledBox";
-import {Alert, Button, Typography} from "@mui/material";
+import {Alert, Typography} from "@mui/material";
 import GameList from "./GameList";
 import StyledButton from "./Styled/StyledButton";
 import {objectIsEmpty} from "../utilities/utilities"
-import { getTeams, getTeamsName } from "../services/teamService"
-import { addGame ,updateGameLive,endGames,getLiveGames,updateEndGames} from "../services/gameService"
+import {  getTeamsName } from "../services/teamService"
+import { addGame ,updateGameLive,getLiveGames,updateEndGames} from "../services/gameService"
 import {getToken, getUser} from "../services/userAtuhService"
 
 
@@ -14,13 +14,11 @@ const AddEditGamesForm = (props) => {
 
     const [userId, setUserId] = useState(null)
     const [teams, setTeams] = useState([])
-    //const [gameLive, setGameLive] = useState([])
     const [editGame, setEditGame] = useState({});
     const [games, setGames] = useState([])
 
     useEffect(() => {
         let currentUser = getUser(getToken());
-        //setGameLive(getLiveGames());
         setTeams(getTeamsName())
         if (currentUser != null) {
             setUserId(currentUser.id)
@@ -111,7 +109,7 @@ const AddEditGamesForm = (props) => {
 
 
     }
-//
+
     const handleRemoveAllGames = () => {
         setGames([])
         setEditGame({})
