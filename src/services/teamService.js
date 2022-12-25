@@ -1,10 +1,9 @@
-import {sendApiGetRequest, sendApiPostRequest} from "./ApiRequests";
+import {sendApiGetRequest} from "./ApiRequests";
 import config from "../config.json";
 
 let urlApi= config.apiUrl;
 let teamsName=[];
  export let teams=[];
-
 
 export const getTeams= () => {
     sendApiGetRequest(urlApi + "/get-all-teams", (response) => {
@@ -26,16 +25,4 @@ export const getTeams= () => {
 
 export const getTeamsName = () => {
     return teamsName;
-}
-
-export const updateTeams= (teams) => {
-    sendApiPostRequest(urlApi + "/update-teams", teams, (response) => {
-        if (response.data.success) {
-
-        }else {
-            if (response.data.error) {
-                alert(response.data.error);
-            }
-        }
-    })
 }
