@@ -59,8 +59,8 @@ const AddEditGamesForm = (props) => {
 
     const createGame = (newGame) => {
         let gamesLive=getLiveGames();
-        if (!checkIfTeamExistInGamesLive(newGame,gamesLive)) {
-            if (!checkIfTeamExistInGamesLive(newGame, games)) {
+        if (!checkIfTeamExistInGames(newGame,gamesLive)) {
+            if (!checkIfTeamExistInGames(newGame, games)) {
                 newGame.userId = userId
                 setGames([...games, newGame])
             }else {
@@ -73,7 +73,7 @@ const AddEditGamesForm = (props) => {
 
 
     }
-    const checkIfTeamExistInGamesLive = (game,games) => {
+    const checkIfTeamExistInGames = (game,games) => {
         let teamExist = false
         games.forEach((g) => {
             if (g.homeTeam === game.homeTeam ||
