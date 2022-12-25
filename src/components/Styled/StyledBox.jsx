@@ -122,7 +122,7 @@ const StyledBox = (props) => {
             <FormControl>
                 <InputLabel></InputLabel>
                 <TextField
-                    disabled={objectIsEmpty(props.editGame) && props.mode!=1}
+                    disabled={ props.mode!=1}
                     sx={{maxWidth:100}}
                     name={"gameSession"}
                     label="Session"
@@ -142,6 +142,7 @@ const StyledBox = (props) => {
                         label="Home team"
                         value={game.homeTeam}
                         onChange={handleTextFieldChange}
+                        disabled={ props.mode!=1}
                 >
                     {
 
@@ -172,6 +173,7 @@ const StyledBox = (props) => {
                         name={"foreignTeam"}
                         value={game.foreignTeam}
                         onChange={handleTextFieldChange}
+                        disabled={ props.mode!=1}
                 >
 
                     {

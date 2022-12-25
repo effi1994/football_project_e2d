@@ -46,41 +46,7 @@ const AddEditGamesForm = (props) => {
         setGames([])
     }
 
-/*
-    const gamesToEdit = [
 
-        {
-            userId: 0,
-            session: 1,
-            homeTeam: "team1",
-            foreignTeam: "team2",
-            goalsForeign: 0,
-            goalsHome: 0,
-            isLive: true
-
-
-        },
-        {
-            session: 2,
-            homeTeam: "team3",
-            foreignTeam: "team4",
-            goalsForeign: 0,
-            goalsHome: 1,
-            isLive: true
-
-
-        },
-        {
-            session: 4,
-            homeTeam: "team1",
-            foreignTeam: "team4",
-            goalsForeign: 1,
-            goalsHome: 0,
-            isLive: true
-
-
-        }
-    ]*/
 
 
     const allGamesButtonSX = {
@@ -91,24 +57,36 @@ const AddEditGamesForm = (props) => {
     }
 
 
-
-
-
-    /*const [teams, setTeams] = useState([
-        {id: 0, name: "team1"},
-        {id: 1, name: "team2"},
-        {id: 2, name: "team3"},
-        {id: 3, name: "team4"},
-        {id: 4, name: "team5"},
-        {id: 5, name: "team6"},
-        {id: 6, name: "team7"},
-    ])*/
-
     const createGame = (newGame) => {
-        newGame.userId = userId
-        setGames([...games, newGame])
+        let gamesLive=getLiveGames();
+        if (!checkIfTeamExistInGamesLive(newGame,gamesLive)) {
+            if (!checkIfTeamExistInGamesLive(newGame, games)) {
+                newGame.userId = userId
+                setGames([...games, newGame])
+            }else {
+                alert("Team already exist in games list")
+            }
+        }else {
+            alert("Team already exist in games live")
+        }
+
+
 
     }
+    const checkIfTeamExistInGamesLive = (game,games) => {
+        let teamExist = false
+        games.forEach((g) => {
+            if (g.homeTeam === game.homeTeam ||
+                 g.homeTeam=== game.foreignTeam ||
+                g.foreignTeam === game.homeTeam ||
+                g.foreignTeam === game.foreignTeam) {
+                teamExist = true
+            }
+        })
+        return teamExist
+    }
+
+
 
     const update = (updatedGame) => {
         const index = games.findIndex(object => {
