@@ -1,7 +1,6 @@
 import React from 'react';
 import LeaguesList from "../components/LeaguesList";
 import {useEffect, useState} from "react";
-import {getTeams} from "../services/teamService";
 import {getLiveGames,liveGamesInDb} from "../services/gameService";
 
 

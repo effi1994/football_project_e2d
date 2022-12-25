@@ -7,7 +7,7 @@ import  LeaguesList from "../components/LeaguesList";
 import {Alert} from "@mui/material";
 
 const LeagueTableLive = () => {
-    const [lifeTable,setLifeTable] = React.useState([]);
+    const [lifeTable,setLifeTable] = useState([]);
 
     useEffect(()=>{
         getTeams();

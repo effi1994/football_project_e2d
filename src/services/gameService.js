@@ -10,8 +10,6 @@ export const getLiveGames= () => {
     sendApiGetRequest(urlApi + "/get-live-games", (response) => {
         if (response.data.success) {
             liveGamesInDb = response.data.gamesObjectList;
-
-
         }else {
             liveGamesInDb = null;
         }
@@ -23,7 +21,6 @@ export const getEndGames= async () => {
     sendApiGetRequest(urlApi + "/get-end-games", (response) => {
         if (response.data.success) {
             endGames = response.data.gamesObjectList;
-
         }else {
             endGames = null;
         }
@@ -33,11 +30,12 @@ export const getEndGames= async () => {
 export const addGame = (arrayGamesLive) => {
     sendApiPostRequestWithBody(urlApi + "add-games", arrayGamesLive, (response) => {
         if (response.data.success) {
-
-          return response.data.gamesObjectList;
+           alert("success add games");
         }else {
-           if (response.data.error) {
-               alert(response.data.error);
+           if (response.data.errorCode === 1) {
+               alert("you can add game with same name team");
+           }else if (response.data.errorCode === 2) {
+               alert("you can add game is exist in db");
            }
         }
     })
@@ -56,7 +54,7 @@ export const getAllGames= () => {
 export const updateGameLive= (gameLive) => {
     sendApiPostRequest(urlApi + "/update-game", gameLive, (response) => {
         if (response.data.success) {
-
+            alert("success update game");
         }else {
             if (response.data.error) {
                 alert(response.data.error);
@@ -68,7 +66,7 @@ export const updateGameLive= (gameLive) => {
 export const  updateEndGames =(arrayGamesLive)=>{
     sendApiPostRequestWithBody(urlApi + "/end-games", arrayGamesLive, (response) => {
         if (response.data.success) {
-
+            alert("success update end games");
         }else {
             if (response.data.error) {
                 alert(response.data.error);
