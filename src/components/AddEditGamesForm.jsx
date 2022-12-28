@@ -72,6 +72,7 @@ const AddEditGamesForm = (props) => {
                 g.foreignTeam === game.homeTeam ||
                 g.foreignTeam === game.foreignTeam) {
                 teamExist = true
+                return teamExist;
             }
         })
         return teamExist
