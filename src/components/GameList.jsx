@@ -1,6 +1,7 @@
 import React, {useEffect, useState}  from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import {tableContainerSX} from "./Styled/ConstantsStyle"
 import {
     Box,
     IconButton,
@@ -18,7 +19,6 @@ import {randomUniqKey} from "../utilities/utilities"
 
 
 const GameList = (props) => {
-    let width = window.innerWidth;
 
     const [editIndex, setEditIndex] = useState(-1)
 
@@ -34,13 +34,7 @@ const GameList = (props) => {
     return (
        <>
 
-           <TableContainer sx={{boxShadow: '5px 5px 20px #ccc',
-               padding: 3,
-               margin: "auto",
-               marginTop: 3,
-               maxWidth: width-(width*(1/4)),
-               backgroundColor: "rgba(168, 173, 170, 0.28)"
-           }}
+           <TableContainer sx={tableContainerSX}
                 component={Paper}
            >
                <Table  sx={{ minWidth: 650}} aria-label="simple table">
@@ -52,10 +46,10 @@ const GameList = (props) => {
                            <TableCell align="center">Goals to foreign</TableCell>
                            <TableCell align="center">Goals to Home</TableCell>
                            <TableCell align="center">Ended</TableCell>
-                           <TableCell align="right"></TableCell>
+                           <TableCell align="right"/>
                            {
                                props.mode==1&&
-                               <TableCell align="right"></TableCell>
+                               <TableCell align="right"/>
                            }
                        </TableRow>
                    </TableHead>

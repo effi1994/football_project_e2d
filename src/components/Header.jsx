@@ -3,6 +3,7 @@ import {AppBar, Box, Button, IconButton, List, Toolbar, Tooltip} from "@mui/mate
 import {NavLink, useNavigate} from "react-router-dom";
 import {getToken,logout} from "../services/userAtuhService";
 import LogoutIcon from '@mui/icons-material/Logout';
+import {buttonSX} from "./Styled/ConstantsStyle";
 
 const links = [
     {titlePage: "Live results", path: "/"},
@@ -11,14 +12,6 @@ const links = [
     {titlePage: "Login", path: "/login"},
 
 ]
-
-const buttonSX = {
-    margin: "0 0 0 15px",
-    transition: "0.2s ease-in",
-    "&:hover": {
-        backgroundColor:"rgba(133, 127, 255, 0.36)"
-    }
-}
 
 const Header = (props) => {
     links[3].titlePage= props.token  || getToken() ? "Add/Edit games" : "Login";

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
 import Header from "./Header";
 import LiveResults from "../pages/LiveResults";
 import LeagueTable from "../pages/LeagueTable";
@@ -9,7 +9,9 @@ import {Container} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getToken} from "../services/userAtuhService";
 import {getTeams} from "../services/teamService";
-import {getAllGames,getEndGames,getLiveGames} from "../services/gameService";
+import {getLiveGames} from "../services/gameService";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AppContainer = () => {
 
@@ -34,6 +36,7 @@ const AppContainer = () => {
     }
     return (
         <>
+            <ToastContainer/>
             <Header path={location.pathname} token={token}/>
             <Container>
                 <Routes>

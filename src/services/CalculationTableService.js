@@ -84,14 +84,13 @@ function sortTableLeague(tableLeague){
     tableLeague.sort((a,b)=>{
         if (a.points > b.points) return -1;
         if (a.points < b.points) return 1;
-        // If points are equal, sort by goal difference
+
         if (a.goalDifference > b.goalDifference) return -1;
         if (a.goalDifference < b.goalDifference) return 1;
-        // If goal difference is equal and points, sort by name tame
+
         if (a.nameTeams.toString().toLowerCase() < b.nameTeams.toString().toLowerCase()) return -1;
         if (a.nameTeams.toString().toLowerCase() > b.nameTeams.toString().toLowerCase()) return 1;
 
-        // If points and goal difference are equal, return 0
         return 0;
     });
     return tableLeague;

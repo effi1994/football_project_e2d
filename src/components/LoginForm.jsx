@@ -11,17 +11,13 @@ import {
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {useState} from "react";
 import {login} from '../services/userAtuhService';
-
+import {globalStyle,boxSX} from "./Styled/ConstantsStyle"
 
 
 
 const LoginForm = (props) => {
 
-    const globalStyle = {
-        "input::-ms-reveal, input::-ms-clear": {
-            display: "none"
-        }
-    };
+
 
     const disabledButton = () => {
         return password=="" || username==""
@@ -53,6 +49,8 @@ const LoginForm = (props) => {
         login(username,password,props.onToken);
     }
 
+
+
     return (
         <div>
             <form>
@@ -66,12 +64,8 @@ const LoginForm = (props) => {
                      padding={3}
                      borderRadius={3}
                      boxShadow={'5px 5px 10px #ccc'}
-                     sx={{
-                         transition: "0.2s ease-in",
-                         ":hover": {
-                             boxShadow: '5px 5px 20px #ccc'
-                         }
-                     }}
+                     sx={boxSX}
+
 
                 >
                     <Typography variant={"h4"} padding={3} textAlign={"center"}>Login</Typography>
@@ -86,7 +80,7 @@ const LoginForm = (props) => {
 
                     />
 
-                    {/* bug in MS Edge browser: duplicates show password button*/}
+
                     <GlobalStyles styles={globalStyle} />
 
                     <TextField

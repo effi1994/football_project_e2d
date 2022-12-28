@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {randomUniqKey} from "../utilities/utilities"
+import {tableContainerSX,rowTableLeaguesSX} from "./Styled/ConstantsStyle"
 import {
     Alert,
     IconButton,
@@ -57,13 +58,7 @@ const LeaguesList = (props) => {
                 ((props.mode=="result")&&props.games.length==0) ?
                     <Alert sx={{marginTop:10}} severity="warning">There is no live games yet</Alert>
                     :
-                    <TableContainer sx={{boxShadow: '5px 5px 20px #ccc',
-                        padding: 3,
-                        margin: "auto",
-                        marginTop: 3,
-                        maxWidth: width-(width*(1/4)),
-                        backgroundColor: "rgba(168, 173, 170, 0.28)"
-                    }}
+                    <TableContainer sx={tableContainerSX}
                                     component={Paper}
                     >
                         <Table  sx={{ minWidth: 650}} aria-label="simple table">
@@ -102,14 +97,7 @@ const LeaguesList = (props) => {
                                 {
                                     props.mode === "result"&&
                                     props.games.map((game) => (
-                                        <TableRow sx={{
-                                            transition:  "0.1s linear",
-                                            opacity: 0.85,
-                                            ":hover": {
-                                                opacity: 1,
-                                                backgroundColor:"rgba(168, 173, 170, 0.05)"
-                                            }
-                                        }}
+                                        <TableRow sx={rowTableLeaguesSX}
                                                   key={randomUniqKey()}
                                         >
 
@@ -163,16 +151,6 @@ const LeaguesList = (props) => {
         </>
     );
 };
-//{
-//     "id": 3,
-//     "gameSession": "1",
-//     "homeTeam": "Chelsea",
-//     "foreignTeam": "Real Madrid CF",
-//     "homeScore": 3,
-//     "foreignScore": 3,
-//     "userId": "\u0001",
-//     "live": true
-// }
 
 export default LeaguesList;
 

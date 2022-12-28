@@ -3,7 +3,7 @@ import StyledButton from "../components/Styled/StyledButton";
 import AddEditGamesForm from "../components/AddEditGamesForm";
 import {getTeams} from "../services/teamService";
 import {getLiveGames} from "../services/gameService";
-
+import {addEditGamesPageButtonSx} from "../components/Styled/ConstantsStyle";
 const AddEditGamesPage = () => {
     const[mode, setMode] = useState(0)
     const [gameLive, setGameLive] = useState([])
@@ -22,13 +22,6 @@ const AddEditGamesPage = () => {
 
     }
 
-    const gamesPageButtonSx = {
-        marginRight: 3,
-        marginTop: 3,
-        borderRadius: 3,
-
-    }
-
     return (
         <>
             {
@@ -36,7 +29,7 @@ const AddEditGamesPage = () => {
                 <>
                     <StyledButton text={"Add Games"}
                                   onClick={onClick}
-                                  sx={gamesPageButtonSx}
+                                  sx={addEditGamesPageButtonSx}
                                   value={1}
                                   color={"success"}
                                   icon={"+"}
@@ -45,7 +38,7 @@ const AddEditGamesPage = () => {
                     <StyledButton
                         text={"Edit Games"}
                         onClick={onClick}
-                        sx={gamesPageButtonSx}
+                        sx={addEditGamesPageButtonSx}
                         value={2}
                         color={"warning"}
                         icon={"/"}

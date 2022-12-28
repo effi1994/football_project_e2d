@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Box, Checkbox, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip} from "@mui/material";
+import { Box, Checkbox, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip} from "@mui/material";
 import StyledButton from "./StyledButton";
 import VideogameAssetRoundedIcon from '@mui/icons-material/VideogameAssetRounded';
 import VideogameAssetOffRoundedIcon from '@mui/icons-material/VideogameAssetOffRounded';
 import {objectIsEmpty} from "../../utilities/utilities";
-import {getTeams, getTeamsName} from "../../services/teamService";
 import {randomUniqKey} from "../../utilities/utilities"
-
-
-//
+import {styledBoxButtonSx,formControlSx} from "./ConstantsStyle"
 
 const StyledBox = (props) => {
     let width = window.innerWidth;
@@ -31,20 +28,12 @@ const StyledBox = (props) => {
             [e.target.name]: e.target.value
         })))
     }
-    const styledBoxButtonSx={
-        marginLeft: 3,
-        borderRadius: 3,
-        minWidth: 100
-    }
-    const formControlSx = {
-        marginLeft: 3
-    }
+
 
     const sessionMinVal = 1
     const goalsHomeMinVal = 0
     const goalsForeignMinVal = 0
 
-    //const [game, setGame] = useState(...props.game)
 
     const initialGame = {
         userId: 1,

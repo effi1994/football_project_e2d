@@ -7,6 +7,9 @@ import {objectIsEmpty} from "../utilities/utilities"
 import {  getTeamsName } from "../services/teamService"
 import { addGame ,updateGameLive,getLiveGames,updateEndGames} from "../services/gameService"
 import {getToken, getUser} from "../services/userAtuhService"
+import {allGamesButtonSX,gamesPageButtonSx} from "./Styled/ConstantsStyle"
+import {toast } from 'react-toastify';
+
 
 
 
@@ -45,16 +48,6 @@ const AddEditGamesForm = (props) => {
     }
 
 
-
-
-    const allGamesButtonSX = {
-        marginTop: 2,
-        padding: 2,
-        marginLeft: 2,
-        borderRadius: 5
-    }
-
-
     const createGame = (newGame) => {
         let gamesLive=getLiveGames();
         if (!checkIfTeamExistInGames(newGame,gamesLive)) {
@@ -62,10 +55,10 @@ const AddEditGamesForm = (props) => {
                 newGame.userId = userId
                 setGames([...games, newGame])
             }else {
-                alert("Team already exist in games list")
+                toast.error("Team already exist in games list")
             }
         }else {
-            alert("Team already exist in games live")
+            toast.error("Team already exist in games live")
         }
 
 
@@ -139,12 +132,7 @@ const AddEditGamesForm = (props) => {
 
     }
 
-    const gamesPageButtonSx = {
-        marginRight: 150,
-        marginTop: 3,
-        borderRadius: 3,
 
-    }
 
    return(
        <>
@@ -163,7 +151,7 @@ const AddEditGamesForm = (props) => {
                    :
                    <>
 
-                       <Typography variant={"h4"} padding={2} textAlign={"center"}>{props.mode==1 ? objectIsEmpty(editGame)? "Add games" : "Edit game" :"Edit existing games"}</Typography>
+                       <Typography variant={"h4"} padding={2} textAlign={"center"} >{props.mode==1 ? objectIsEmpty(editGame)? "Add games" : "Edit game" :"Edit existing games"}</Typography>
                        <StyledBox create={createGame}
                                   update={update}
                                   editGame={editGame}

@@ -1,4 +1,5 @@
 import {sendApiGetRequest, sendApiPostRequest,sendApiPostRequestWithBody} from "./ApiRequests";
+import {toast } from 'react-toastify';
 
 import config from "../config.json";
 let urlApi= config.apiUrl;
@@ -30,12 +31,12 @@ export const getEndGames= async () => {
 export const addGame = (arrayGamesLive) => {
     sendApiPostRequestWithBody(urlApi + "add-games", arrayGamesLive, (response) => {
         if (response.data.success) {
-           alert("success add games");
+           toast.success("success add games");
         }else {
            if (response.data.errorCode === 1) {
-               alert("you can add game with same name team");
+               toast.error("you can add game with same name team");
            }else if (response.data.errorCode === 2) {
-               alert("you can add game is exist in db");
+               toast.error("you can add game is exist in db");
            }
         }
     })
@@ -54,10 +55,10 @@ export const getAllGames= () => {
 export const updateGameLive= (gameLive) => {
     sendApiPostRequest(urlApi + "/update-game", gameLive, (response) => {
         if (response.data.success) {
-            alert("success update game");
+            toast.success("success update game");
         }else {
             if (response.data.error) {
-                alert(response.data.error);
+                toast.error(response.data.error);
             }
         }
     })
@@ -66,10 +67,10 @@ export const updateGameLive= (gameLive) => {
 export const  updateEndGames =(arrayGamesLive)=>{
     sendApiPostRequestWithBody(urlApi + "/end-games", arrayGamesLive, (response) => {
         if (response.data.success) {
-            alert("success update end games");
+            toast.success("success update end games");
         }else {
             if (response.data.error) {
-                alert(response.data.error);
+                toast.error(response.data.error);
             }
         }
     })
