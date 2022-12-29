@@ -123,7 +123,7 @@ const StyledBox = (props) => {
                 />
             </FormControl>
 
-            <FormControl disabled={objectIsEmpty(props.editGame) && props.mode!=1}
+            <FormControl disabled={!objectIsEmpty(props.editGame) }
                          sx={formControlSx}>
                 <InputLabel>Home team</InputLabel>
                 <Select sx={{width: 150}}
@@ -131,7 +131,7 @@ const StyledBox = (props) => {
                         label="Home team"
                         value={game.homeTeam}
                         onChange={handleTextFieldChange}
-                        disabled={ props.mode!=1}
+                        disabled={ !objectIsEmpty(props.editGame)}
                 >
                     {
 
@@ -154,7 +154,7 @@ const StyledBox = (props) => {
 
 
             <FormControl
-                disabled={objectIsEmpty(props.editGame) && props.mode!=1}
+                disabled={!objectIsEmpty(props.editGame) }
                 sx={formControlSx}>
                 <InputLabel>Foreign team</InputLabel>
                 <Select sx={{width: 150}}
@@ -162,7 +162,7 @@ const StyledBox = (props) => {
                         name={"foreignTeam"}
                         value={game.foreignTeam}
                         onChange={handleTextFieldChange}
-                        disabled={ props.mode!=1}
+                        disabled={ !objectIsEmpty(props.editGame)}
                 >
 
                     {

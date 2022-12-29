@@ -80,6 +80,10 @@ const AddEditGamesForm = (props) => {
 
 
 
+
+
+
+
     const update = (updatedGame) => {
         const index = games.findIndex(object => {
             return (
@@ -90,30 +94,14 @@ const AddEditGamesForm = (props) => {
                 object.goalsHome===editGame.goalsHome
             )
         })
-//
+
         const currentGames=games
-        if (props.mode==1){
-            let gamesLive=getLiveGames();
-            if (!checkIfTeamExistInGames(updatedGame,gamesLive)) {
-                if (!checkIfTeamExistInGames(updatedGame, games)) {
-                    currentGames[index]=updatedGame;
-                    setGames(currentGames);
-                }else {
-                    toast.error("Team already exist in games list")
-                }
-            }else {
-                toast.error("Team already exist in games live")
-            }
-
-        }else if (props.mode ==2) {
-            currentGames[index]=updatedGame
-            updateGameLive(currentGames[index]);
-            if (currentGames[index].live === false) {
+        currentGames[index]=updatedGame
+        updateGameLive(currentGames[index]);
+        if (currentGames[index].live === false) {
                 currentGames.splice(index, 1);
-            }
-            setGames(currentGames)
-
         }
+            setGames(currentGames)
 
         setEditGame({})
 

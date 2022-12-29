@@ -3,7 +3,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import {tableContainerSX} from "./Styled/ConstantsStyle"
 import {
-    Box,
     IconButton,
     Paper,
     Table,
@@ -11,8 +10,7 @@ import {
     TableCell,
     TableContainer,
     TableHead,
-    TableRow, Tooltip,
-    Typography
+    TableRow, Tooltip
 } from "@mui/material";
 
 import {randomUniqKey} from "../utilities/utilities"
