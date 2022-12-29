@@ -90,7 +90,7 @@ const AddEditGamesForm = (props) => {
                 object.goalsHome===editGame.goalsHome
             )
         })
-
+//
         const currentGames=games
         if (props.mode==1){
             let gamesLive=getLiveGames();
