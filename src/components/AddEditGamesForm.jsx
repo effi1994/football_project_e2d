@@ -112,10 +112,10 @@ const AddEditGamesForm = (props) => {
                 currentGames.splice(index, 1);
             }
             setGames(currentGames)
-            setEditGame({})
+
         }
 
-
+        setEditGame({})
 
 
     }
@@ -146,6 +146,11 @@ const AddEditGamesForm = (props) => {
 
     const handleEditGame = (index) => {
         setEditGame(games[index])
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+
+        })
 
     }
 
@@ -159,7 +164,7 @@ const AddEditGamesForm = (props) => {
                sx={gamesPageButtonSx}
                value={0}
                color={"error"}
-               icon={"<-"}
+               icon={"<"}
            />
 
            {
@@ -214,7 +219,7 @@ const AddEditGamesForm = (props) => {
                            <StyledButton text={"End All Games "}
                                          sx={allGamesButtonSX}
                                          color={"warning"}
-                                         icon={"v"}
+                                         icon={"c"}
                                          onClick={handleEndGames}
                            />
 

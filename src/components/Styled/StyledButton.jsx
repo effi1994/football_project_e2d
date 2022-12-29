@@ -4,6 +4,8 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import VideogameAssetOffRoundedIcon from '@mui/icons-material/VideogameAssetOffRounded';
 import {Button} from "@mui/material";
 
 
@@ -20,6 +22,10 @@ const StyledButton = (props) => {
                 return <SaveOutlinedIcon/>
             case "x":
                 return <CancelOutlinedIcon/>
+            case "<":
+                return <ArrowBackIosIcon/>
+            case "c":
+                return <VideogameAssetOffRoundedIcon/>
         }
     }
     return (

@@ -16,9 +16,9 @@ const AddEditGamesPage = () => {
         setGameLive(getLiveGames())
     },[getLiveGames()])
 
-    const onClick = (e) => {
+    const onClick = () => {
 
-        setMode(e.target.value)
+        setMode(0)
 
     }
 
@@ -28,7 +28,7 @@ const AddEditGamesPage = () => {
                 mode==0?
                 <>
                     <StyledButton text={"Add Games"}
-                                  onClick={onClick}
+                                  onClick={() => setMode(1)}
                                   sx={addEditGamesPageButtonSx}
                                   value={1}
                                   color={"success"}
@@ -37,7 +37,7 @@ const AddEditGamesPage = () => {
 
                     <StyledButton
                         text={"Edit Games"}
-                        onClick={onClick}
+                        onClick={() => setMode(2)}
                         sx={addEditGamesPageButtonSx}
                         value={2}
                         color={"warning"}
