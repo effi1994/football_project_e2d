@@ -92,14 +92,30 @@ const AddEditGamesForm = (props) => {
         })
 
         const currentGames=games
+        if (props.mode==1){
+            let gamesLive=getLiveGames();
+            if (!checkIfTeamExistInGames(updatedGame,gamesLive)) {
+                if (!checkIfTeamExistInGames(updatedGame, games)) {
+                    currentGames[index]=updatedGame;
+                    setGames(currentGames);
+                }else {
+                    toast.error("Team already exist in games list")
+                }
+            }else {
+                toast.error("Team already exist in games live")
+            }
 
-        currentGames[index]=updatedGame
-        updateGameLive(currentGames[index]);
-        if (currentGames[index].live === false) {
-            currentGames.splice(index, 1);
+        }else if (props.mode ==2) {
+            currentGames[index]=updatedGame
+            updateGameLive(currentGames[index]);
+            if (currentGames[index].live === false) {
+                currentGames.splice(index, 1);
+            }
+            setGames(currentGames)
+            setEditGame({})
         }
-        setGames(currentGames)
-        setEditGame({})
+
+
 
 
     }
